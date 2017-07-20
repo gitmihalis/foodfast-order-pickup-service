@@ -18,7 +18,7 @@
   <!-- Cart items go here  -->
   <div id="total">
   Total:
-  <span id="totalCalc"> 0<span>
+  <span id="totalCalc">$ 0<span>
   </div>
   <!-- Customer details  -->
   <h1><i class="fa fa-address-card" aria-hidden="true"></i> My Details</h1>
@@ -55,21 +55,21 @@
     <img class = "menuPhoto" src="https://digital-photography-school.com/wp-content/uploads/2016/06/Rachel-Korinek-Food-Photographer-DPS-Hero-Angle-12.jpg">
     </br><span class = "menuName">Burger</span>
     <span class = "addButton"></span>
-    </br><span class = "menuPrice">$12.00</span>
+    </br><span class = "menuPrice">$12.50</span>
     <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
   </div>
   <div class="menuItem">
     <img class = "menuPhoto" src="http://www.learnfoodphotography.com/wp-content/uploads/2010/11/RedLentilCarrotSoup.jpg">
     </br><span class = "menuName">Soup</span>
     <span class = "addButton"></span>
-    </br><span class = "menuPrice">$12.00</span>
+    </br><span class = "menuPrice">$10.50</span>
     <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
   </div>
   <div class="menuItem">
     <img class = "menuPhoto" src="http://www.foodportfolio.com/b/wp-content/uploads/2010/09/test-078193.jpg">
     </br><span class = "menuName">Cake</span>
     <span class = "addButton"></span>
-    </br><span class = "menuPrice">$12.00</span>
+    </br><span class = "menuPrice">$6.00</span>
     <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
   </div>
 </div>
@@ -86,7 +86,7 @@
 $("div#main").on( "click", ".addButton", function() {
   let name = $(this).parent().find('.menuName').text();
   let priceInitial = $(this).parent().find('.menuPrice').text();
-  let price = parseFloat(priceInitial.slice(1));
+  let price = parseFloat(priceInitial.slice(1)).toFixed(2);
   let image = $(this).parent().find('img').attr('src');
   let item = `<div class = "item">
             <img class = "circlePhoto" src="${image}">
@@ -101,13 +101,28 @@ $("div#main").on( "click", ".addButton", function() {
   $(this).parent().find('.menuPhoto').addClass('active');
 });
 
+// ---------------- COSTS FOR EACH ITEM ----------------------
 $("div.cart").on( "click", ".quantity", function() {
  let quantity = $(this).parent().find('.quantity').val();
  let priceEachString = $(this).parent().parent().find('.itemPrice').attr("value");
  let priceEach = parseFloat(priceEachString);
  let totalPriceItem = quantity * priceEach;
-  $(this).parent().parent().find('.itemPrice').text('$ ' + totalPriceItem);
- console.log('$ ' + totalPriceItem);
+  $(this).parent().parent().find('.itemPrice').text('$ ' + totalPriceItem.toFixed(2));
+
+
+});
+
+// ----------------- CALCULATING TOTAL --------------------
+$(document).click(function(){
+  let sum = 0;
+    $('.itemPrice').each(function() {
+      let number = $(this).text();
+      let numberGood = parseFloat(number.slice(2));
+      //console.log(numberGood);
+        sum += numberGood;
+    });
+    console.log(sum);
+    $("#totalCalc").text('$ ' + sum.toFixed(2));
 });
 
 // ----------------- REMOVE ITEM FROM CART --------------------

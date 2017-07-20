@@ -1,7 +1,7 @@
 {
-  "user": "development",
-  "password": "development",
-  "database": "foodfast",
+  "user": "labber",
+  "password": "labber",
+  "database": "midterm",
   "hostname": "localhost",
   "port": 3000,
   "ssl": true

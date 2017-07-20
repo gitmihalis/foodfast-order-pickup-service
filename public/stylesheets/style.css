@@ -32,7 +32,10 @@ img.menuPhoto {
   width: 160px;
   height: 100px; }
 
-.addButton {
+img.menuPhoto.active {
+  box-shadow: 1px 1px 10px #888888; }
+
+.addButton:before {
   background-color: white;
   float: right;
   border-radius: 12%;
@@ -41,37 +44,50 @@ img.menuPhoto {
   border-color: #00a085;
   color: #00a085;
   text-transform: uppercase;
-  padding: 3px; }
+  padding: 3px;
+  content: "add"; }
 
-div.main {
+.addButtonActive:before {
+  background-color: #e1e1e1;
+  float: right;
+  border-radius: 12%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b9b9b9;
+  color: #b9b9b9;
+  text-transform: uppercase;
+  padding: 3px;
+  content: "added"; }
+
+div#main {
   position: absolute;
   left: 350px;
   margin: auto;
   text-align: center;
   padding: 40px; }
-  div.main h1 {
+  div#main h1 {
     color: #00a085;
     text-transform: uppercase;
     font-weight: normal;
     font-size: 2.2em; }
-  div.main div.menuItem {
+  div#main div.menuItem {
     display: inline-block;
     background-color: white;
     padding: 20px;
     width: 200px;
     text-align: left; }
-    div.main div.menuItem .menuName {
+    div#main div.menuItem .menuName {
       font-size: 1em; }
-    div.main div.menuItem .menuPrice {
+    div#main div.menuItem .menuPrice {
       font-size: 0.8em;
       color: #00a085; }
-    div.main div.menuItem .menuDescription {
+    div#main div.menuItem .menuDescription {
       font-size: 0.8em; }
 
 div.cart {
   background-color: #ebebeb;
   padding: 20px;
-  max-width: 350px;
+  width: 350px;
   height: inherit;
   position: relative;
   float: left;
@@ -81,8 +97,7 @@ div.cart {
     text-align: center;
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 1.8em;
-    line-height: 1.9em; }
+    font-size: 1.8em; }
   div.cart div.item {
     margin: 10px auto;
     display: inline-block;

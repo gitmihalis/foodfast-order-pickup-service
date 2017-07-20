@@ -38,7 +38,11 @@ img.menuPhoto{
   height: 100px;
 }
 
-.addButton{
+img.menuPhoto.active{
+    box-shadow: 1px 1px 10px #888888;
+}
+
+.addButton:before{
   background-color: white;
   float: right;
   border-radius: 12%;
@@ -48,9 +52,24 @@ img.menuPhoto{
   color: #00a085;
   text-transform: uppercase;
   padding: 3px;
+  content: "add";
 }
 
-div.main{
+.addButtonActive:before{
+background-color: #e1e1e1;
+float: right;
+border-radius: 12%;
+border-style: solid;
+border-width: 1px;
+border-color: #b9b9b9;
+color: #b9b9b9;
+text-transform: uppercase;
+padding: 3px;
+content: "added";
+}
+
+
+div#main{
   position: absolute;
   left: 350px;
   margin: auto;
@@ -88,7 +107,7 @@ div.main{
 div.cart{
   background-color: #ebebeb;
   padding: 20px;
-  max-width: 350px;
+  width: 350px;
   height: inherit;
   position: relative;
   float: left;
@@ -100,7 +119,6 @@ div.cart{
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.8em;
-    line-height: 1.9em;
   }
 
   div.item{

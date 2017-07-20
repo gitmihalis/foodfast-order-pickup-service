@@ -1,5 +1,6 @@
 $font-title:    Helvetica;
-$primary-color: #4168a8;
+$brandGreen: #00a085;
+$lightGrey: #ebebeb;
 
 html {
   box-sizing: border-box;
@@ -20,7 +21,7 @@ header{
   padding: 0;
 }
 a {
-  color: $primary-color;
+  color: $brandGreen;
 }
 h1 {
   font-family: $font-title;
@@ -50,14 +51,14 @@ img.menuPhoto.active{
   border-radius: 12%;
   border-style: solid;
   border-width: 1px;
-  border-color: #00a085;
-  color: #00a085;
+  border-color: $brandGreen;
+  color: $brandGreen;
   text-transform: uppercase;
   padding: 3px;
   content: "add";
 }
 .addButton:hover:before{
-  background-color: #ebebeb;
+  background-color: $lightGrey;
 }
 
 
@@ -83,7 +84,7 @@ div#main{
   padding: 40px;
 
   h1{
-    color: #00a085;
+    color: $brandGreen;
     text-transform: uppercase;
     font-weight: normal;
     font-size: 2.2em;
@@ -101,7 +102,7 @@ div#main{
     }
     .menuPrice{
       font-size: 0.8em;
-      color: #00a085;
+      color: $brandGreen;
     }
     .menuDescription{
       font-size: 0.8em;
@@ -109,24 +110,31 @@ div#main{
 
   }
 }
-form #submit{
+form {
+
+  &.hide{
+    visibility: hidden;
+  }
+  #submit{
   background-color: transparent;
-  color: #00a085;
+  color: $brandGreen;
   font-size: 1.2em;
   border-radius: 7px;
-  border: 2px solid #00a085;
+  border: 2px solid $brandGreen;
   text-transform: uppercase;
   padding: 10px 15px;
   vertical-align: middle;
   margin: 10px 0 0 0;
-}
-form #submit:hover{
-  background-color: #00a085;
+  }
+  #submit:hover{
+  background-color: $brandGreen;
   color: white;
+  }
 }
 
+
 div.cart{
-  background-color: #ebebeb;
+  background-color: $lightGrey;
   padding: 20px;
   width: 350px;
   height: inherit;
@@ -135,17 +143,22 @@ div.cart{
   left: 0px;
 
   h1{
-    color: #00a085;
+    color: $brandGreen;
     text-align: center;
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.8em;
   }
   #total{
-    border-top: 2px solid #00a085;
+    border-top: 2px solid $brandGreen;
     text-align: right;
     text-transform: uppercase;
     padding: 3px 0;
+    margin: 8px 0 0 0;
+  }
+  #empty{
+  font-size: 0.8em;
+  color: $brandGreen;
   }
 
   div.item{

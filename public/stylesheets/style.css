@@ -16,7 +16,7 @@ header {
   padding: 0; }
 
 a {
-  color: #4168a8; }
+  color: #00a085; }
 
 h1 {
   font-family: Helvetica; }
@@ -90,6 +90,8 @@ div#main {
     div#main div.menuItem .menuDescription {
       font-size: 0.8em; }
 
+form.hide {
+  visibility: hidden; }
 form #submit {
   background-color: transparent;
   color: #00a085;
@@ -100,7 +102,6 @@ form #submit {
   padding: 10px 15px;
   vertical-align: middle;
   margin: 10px 0 0 0; }
-
 form #submit:hover {
   background-color: #00a085;
   color: white; }
@@ -123,7 +124,11 @@ div.cart {
     border-top: 2px solid #00a085;
     text-align: right;
     text-transform: uppercase;
-    padding: 3px 0; }
+    padding: 3px 0;
+    margin: 8px 0 0 0; }
+  div.cart #empty {
+    font-size: 0.8em;
+    color: #00a085; }
   div.cart div.item {
     margin: 10px auto;
     display: inline-block;

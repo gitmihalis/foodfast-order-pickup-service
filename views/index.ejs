@@ -14,11 +14,12 @@
 <!-- THE CART  -->
 <div class="cart">
   <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</h1>
-  <form id = "form" action="/test" method="POST">
+  <span id = "empty">You have nothing in your cart, and you're hungry! Get shopping!</span>
+  <form id = "form" class = "hide" action="/test" method="POST">
   <!-- Cart items go here  -->
   <div id="total">
   Total:
-  <span id="totalCalc">$ 0<span>
+  <span id="totalCalc">$ 0.00<span>
   </div>
   <!-- Customer details  -->
   <h1><i class="fa fa-address-card" aria-hidden="true"></i> My Details</h1>
@@ -108,20 +109,16 @@ $("div.cart").on( "click", ".quantity", function() {
  let priceEach = parseFloat(priceEachString);
  let totalPriceItem = quantity * priceEach;
   $(this).parent().parent().find('.itemPrice').text('$ ' + totalPriceItem.toFixed(2));
-
-
 });
 
 // ----------------- CALCULATING TOTAL --------------------
 $(document).click(function(){
   let sum = 0;
     $('.itemPrice').each(function() {
-      let number = $(this).text();
-      let numberGood = parseFloat(number.slice(2));
-      //console.log(numberGood);
-        sum += numberGood;
+      let numberString = $(this).text();
+      let number = parseFloat(numberString.slice(2));
+        sum += number;
     });
-    console.log(sum);
     $("#totalCalc").text('$ ' + sum.toFixed(2));
 });
 
@@ -131,9 +128,21 @@ $("div.cart").on( "click", ".remove", function() {
   let name = $(this).parent().parent().children('.itemName').text();
   $("div#main").find("span:contains("+name+")").parent().find('.addButtonActive').removeClass("addButtonActive").addClass("addButton");
    $("div#main").find("span:contains("+name+")").parent().find('.menuPhoto').removeClass("active");
-  console.log(name);
   $(this).parent().parent().remove();
 });
+
+// ----------------- ANYTHING IN CART? --------------------
+$(document).click(function(){
+  if ($("#totalCalc").text() === "$ 0.00"){
+    $("#empty").text("You have nothing in your cart, and you're hungry! Get shopping!");
+    $("form").addClass("hide");
+  }
+  else {
+    $("#empty").text("");
+    $("form").removeClass("hide");
+  }
+});
+
 </script>
 
   </body>

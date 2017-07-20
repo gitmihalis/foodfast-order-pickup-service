@@ -35,6 +35,9 @@ img.menuPhoto {
 img.menuPhoto.active {
   box-shadow: 1px 1px 10px #888888; }
 
+.center {
+  text-align: center; }
+
 .addButton:before {
   background-color: white;
   float: right;
@@ -46,6 +49,9 @@ img.menuPhoto.active {
   text-transform: uppercase;
   padding: 3px;
   content: "add"; }
+
+.addButton:hover:before {
+  background-color: #ebebeb; }
 
 .addButtonActive:before {
   background-color: #e1e1e1;
@@ -84,6 +90,21 @@ div#main {
     div#main div.menuItem .menuDescription {
       font-size: 0.8em; }
 
+form #submit {
+  background-color: transparent;
+  color: #00a085;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #00a085;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 10px 0 0 0; }
+
+form #submit:hover {
+  background-color: #00a085;
+  color: white; }
+
 div.cart {
   background-color: #ebebeb;
   padding: 20px;
@@ -98,6 +119,11 @@ div.cart {
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.8em; }
+  div.cart #total {
+    border-top: 2px solid #00a085;
+    text-align: right;
+    text-transform: uppercase;
+    padding: 3px 0; }
   div.cart div.item {
     margin: 10px auto;
     display: inline-block;

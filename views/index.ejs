@@ -10,19 +10,37 @@
     <header>
       <% include partials/_header %>
     </header>
-    <div class="cart">
-      <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</h1>
-      <form id = "form" action="/test" method="POST">
 
-      <h1><i class="fa fa-address-card" aria-hidden="true"></i> My Details</h1>
-      <label for="customerName">Name:</label>
-        <input type="name" name="customerName" placeholder="John Doe"></br>
-        <input type="radio" name="payMethod" value="store" checked> Pay In-Store<br>
-        <input type="radio" name="payMethod" value="online">Pay Online<br>
-        <input type="submit">
-      </form>
+<!-- THE CART  -->
+<div class="cart">
+  <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</h1>
+  <form id = "form" action="/test" method="POST">
+  <!-- Cart items go here  -->
+  <div id="total">
+  Total:
+  <span id="totalCalc"> 0<span>
+  </div>
+  <!-- Customer details  -->
+  <h1><i class="fa fa-address-card" aria-hidden="true"></i> My Details</h1>
+  <div class = "center">
+  <label for="customerName">Name:</label>
+    <input type="name" name="customerName" placeholder="John Doe" required>
+    </br>
+
+    <label for="customerPhone">Phone Number (format: xxx-xxx-xxxx):</label>
+    <input name="customerPhone" type="tel" pattern="^\d{3}-\d{3}-\d{4}$" placeholder="905-333-3333" required >
+    </br>
+
+    <input type="radio" name="payMethod" value="store" checked> Pay In-Store <input type="radio" name="payMethod" value="online"> Pay Online</input></br>
+
+    <!-- Submit  -->
+    <input id = "submit" type="submit" value="Place Order"></input>
     </div>
+  </form>
+</div>
 
+
+<!-- THE MENU  -->
 
 <div id = "main">
   <h1>Menu</h1>
@@ -56,14 +74,19 @@
   </div>
 </div>
 
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous">
 </script>
 <script>
+// ------------------- ADD ITEM TO CART ---------------------
+
 $("div#main").on( "click", ".addButton", function() {
   let name = $(this).parent().find('.menuName').text();
-  let price = $(this).parent().find('.menuPrice').text();
+  let priceInitial = $(this).parent().find('.menuPrice').text();
+  let price = parseInt(priceInitial)
   let image = $(this).parent().find('img').attr('src');
   let item = `<div class = "item">
             <img class = "circlePhoto" src="${image}">
@@ -77,6 +100,8 @@ $("div#main").on( "click", ".addButton", function() {
   $(this).removeClass('addButton').addClass('addButtonActive');
   $(this).parent().find('.menuPhoto').addClass('active');
 });
+
+// ----------------- REMOVE ITEM FROM CART --------------------
 
 $("div.cart").on( "click", ".remove", function() {
   let name = $(this).parent().parent().children('.itemName').text();

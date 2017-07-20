@@ -41,7 +41,9 @@ img.menuPhoto{
 img.menuPhoto.active{
     box-shadow: 1px 1px 10px #888888;
 }
-
+.center{
+  text-align: center;
+}
 .addButton:before{
   background-color: white;
   float: right;
@@ -54,6 +56,10 @@ img.menuPhoto.active{
   padding: 3px;
   content: "add";
 }
+.addButton:hover:before{
+  background-color: #ebebeb;
+}
+
 
 .addButtonActive:before{
 background-color: #e1e1e1;
@@ -103,6 +109,21 @@ div#main{
 
   }
 }
+form #submit{
+  background-color: transparent;
+  color: #00a085;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #00a085;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 10px 0 0 0;
+}
+form #submit:hover{
+  background-color: #00a085;
+  color: white;
+}
 
 div.cart{
   background-color: #ebebeb;
@@ -119,6 +140,12 @@ div.cart{
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.8em;
+  }
+  #total{
+    border-top: 2px solid #00a085;
+    text-align: right;
+    text-transform: uppercase;
+    padding: 3px 0;
   }
 
   div.item{

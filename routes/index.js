@@ -20,7 +20,8 @@ router.post('/test', function(req, res){
   }
   let payMethod = req.body.payMethod;
   let customer = req.body.customerName;
-  console.log(payMethod, customer)
+  let phone = req.body.customerPhone;
+  console.log(payMethod, customer, phone)
 });
 
 

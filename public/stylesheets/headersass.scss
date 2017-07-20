@@ -1,0 +1,13 @@
+$test:  #ff7109;
+$font-title: Helvetica;
+
+nav {
+  background-color: $test;
+  margin: 0;
+
+  h1 {
+  font-family: $font-title;
+  padding: 20px;
+  color: white;
+  }
+}

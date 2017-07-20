@@ -1,38 +1,44 @@
+$font-title:    Helvetica;
+$primary-color: #4168a8;
+
 html {
   box-sizing: border-box;
-  height: 100%; }
-
+  height: 100%;
+}
 *, *:before, *:after {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 body {
-  font-family: Helvetica;
+  font-family: $font-title;
   margin: 0;
   padding: 0;
-  height: 100%; }
-
-header {
+  height: 100%;
+}
+header{
   margin: 0;
-  padding: 0; }
-
+  padding: 0;
+}
 a {
-  color: #4168a8; }
-
+  color: $primary-color;
+}
 h1 {
-  font-family: Helvetica; }
+  font-family: $font-title;
+}
 
-img.circlePhoto {
+img.circlePhoto{
   border-radius: 50%;
   width: 60px;
   height: 60px;
   float: left;
-  margin-right: 15px; }
-
-img.menuPhoto {
+  margin-right: 15px;
+}
+img.menuPhoto{
   width: 160px;
-  height: 100px; }
+  height: 100px;
+}
 
-.addButton {
+.addButton{
   background-color: white;
   float: right;
   border-radius: 12%;
@@ -41,59 +47,76 @@ img.menuPhoto {
   border-color: #00a085;
   color: #00a085;
   text-transform: uppercase;
-  padding: 3px; }
+  padding: 3px;
+}
 
-div.main {
+div.main{
   position: absolute;
   left: 350px;
   margin: auto;
   text-align: center;
-  padding: 40px; }
-  div.main h1 {
+  padding: 40px;
+
+  h1{
     color: #00a085;
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 2.2em; }
-  div.main div.menuItem {
+    font-size: 2.2em;
+
+  }
+  div.menuItem{
     display: inline-block;
     background-color: white;
     padding: 20px;
     width: 200px;
-    text-align: left; }
-    div.main div.menuItem .menuName {
-      font-size: 1em; }
-    div.main div.menuItem .menuPrice {
-      font-size: 0.8em;
-      color: #00a085; }
-    div.main div.menuItem .menuDescription {
-      font-size: 0.8em; }
+    text-align: left;
 
-div.cart {
+    .menuName{
+      font-size: 1em;
+    }
+    .menuPrice{
+      font-size: 0.8em;
+      color: #00a085;
+    }
+    .menuDescription{
+      font-size: 0.8em;
+    }
+
+  }
+}
+
+div.cart{
   background-color: #ebebeb;
   padding: 20px;
   max-width: 350px;
   height: inherit;
   position: relative;
   float: left;
-  left: 0px; }
-  div.cart h1 {
+  left: 0px;
+
+  h1{
     color: #00a085;
     text-align: center;
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.8em;
-    line-height: 1.9em; }
-  div.cart div.item {
+    line-height: 1.9em;
+  }
+
+  div.item{
     margin: 10px auto;
     display: inline-block;
-    width: 100%; }
-    div.cart div.item .itemName {
+    width: 100%;
+
+    .itemName{
       padding-top: 5px;
       font-size: 1em;
       line-height: 1.1em;
-      text-transform: uppercase; }
-    div.cart div.item .itemPrice {
+      text-transform: uppercase;
+    }
+    .itemPrice{
       font-size: 0.8em;
-      line-height: 1em; }
-
-/*# sourceMappingURL=style.css.map */
+      line-height: 1em;
+    }
+  }
+}

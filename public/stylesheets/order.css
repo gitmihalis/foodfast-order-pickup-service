@@ -1,0 +1,74 @@
+html {
+  box-sizing: border-box;
+  height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  font-family: Helvetica;
+  margin: 0;
+  padding: 0;
+  height: 100%; }
+
+header {
+  margin: 0;
+  padding: 0; }
+
+a {
+  color: #00a085; }
+
+h1 {
+  font-family: Helvetica;
+  color: #00a085;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 2.2em;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%; }
+
+#allOrders {
+  padding: 20px;
+  border: solid 3px #a7a7a7;
+  width: 90%;
+  max-width: 650px;
+  min-width: 450px;
+  margin: auto;
+  border-radius: 15px;
+  background-color: #ebebeb;
+  text-align: center; }
+  #allOrders h1 {
+    font-family: Helvetica;
+    text-transform: none;
+    color: #585858;
+    margin: 0;
+    text-align: left; }
+  #allOrders .orderPhone {
+    font-size: 0.5em; }
+  #allOrders .orderDate {
+    font-size: 0.8em;
+    color: #00a085;
+    text-align: left; }
+  #allOrders .orderTimer {
+    float: right;
+    font-size: 3em;
+    color: #ff7109; }
+  #allOrders .complete {
+    background-color: transparent;
+    border: solid 3px #00a085;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #00a085; }
+    #allOrders .complete:hover {
+      background-color: #00a085;
+      color: white; }
+  #allOrders ul {
+    text-align: left;
+    font-size: 0.9em;
+    padding: 0 0 0 20px;
+    color: #585858; }
+
+/*# sourceMappingURL=order.css.map */

@@ -1,5 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const settings = require("../database/settings");
+const knex = require('knex') (require('../database/knexfile').development);
+
+const Client = require('./client')(knex);
+
+
+//-------------PAGES----------------------
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,5 +32,39 @@ router.post('/test', function(req, res){
   let phone = req.body.customerPhone;
   console.log(payMethod, customer, phone)
 });
+
+router.get("/manager", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("manager");
+});
+
+router.get("/login", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("login");
+});
+
+router.get("/register", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("register");
+});
+
+app.post('/login', (req, res) => {
+  User.authenticate(req.body.email, req.body.password)
+  .then((user) => {
+    // If email and password match, we assign the id to the session
+    req.session.user_id = user.id;
+    res.redirect('/');
+  }).catch((err) => {
+    // In the event that an error occurred at any point during the promise
+    // chain, add the error message to the flash errors and redirect.
+    req.flash('errors', err.message);
+    res.redirect('/manager');
+  });
+});
+
+
 
 module.exports = router;

@@ -1,11 +1,175 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Welcome</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <header>
+      <% include partials/_header %>
+    </header>
+
+    <!--   THE CART    -->
+    <div class="cart">
+      <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</h1>
+      <span id = "empty">You have nothing in your cart, and you're
+       hungry! Get shopping!</span>
+
+      <!-- Cart Form Starts -->
+      <form id = "form" class = "hide" action="/test" method="POST">
+      <!-- Cart items go here  -->
+      <div id="total">
+      Total:
+      <span id="totalCalc">$ 0.00<span>
+      </div>
+      <!-- Customer details  -->
+      <h1><i class="fa fa-address-card" aria-hidden="true"></i> My Details</h1>
+
+      <div class = "center">
+      <label for="customerName">Name:</label>
+      <input type="name" name="customerName" placeholder="John Doe" required></br>
+
+      <label for="customerPhone">Phone Number (xxx-xxx-xxxx):</label>
+      <input name="customerPhone" type="tel" pattern="^\d{3}-\d{3}-\d{4}$"
+        placeholder="905-333-3333" size="15" required></br>
+
+      <input type="radio" name="payMethod" value="store" checked> Pay In-Store
+      <input type="radio" name="payMethod" value="online"> Pay Online
+      </input></br>
+
+      <!-- Submit  -->
+      <input id = "submit" type="submit" value="Place Order"></input>
+      </div>
+      </form>
+    </div>
+
+
+    <!-- THE MENU (Will not be hard coded) -->
+
+    <div id = "main">
+      <h1>Menu</h1>
+      <div class="menuItem">
+        <img class = "menuPhoto" src="http://www.lieslcheney.com/wp-content/uploads/2016/05/4.jpg">
+        </br><span class = "menuName">Salad</span>
+        <span class = "addButton"></span>
+        </br><span class = "menuPrice">$12.00</span>
+        <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
+      </div>
+      <div class="menuItem">
+        <img class = "menuPhoto" src="https://digital-photography-school.com/wp-content/uploads/2016/06/Rachel-Korinek-Food-Photographer-DPS-Hero-Angle-12.jpg">
+        </br><span class = "menuName">Burger</span>
+        <span class = "addButton"></span>
+        </br><span class = "menuPrice">$12.50</span>
+        <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
+      </div>
+      <div class="menuItem">
+        <img class = "menuPhoto" src="http://www.learnfoodphotography.com/wp-content/uploads/2010/11/RedLentilCarrotSoup.jpg">
+        </br><span class = "menuName">Soup</span>
+        <span class = "addButton"></span>
+        </br><span class = "menuPrice">$10.50</span>
+        <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
+      </div>
+      <div class="menuItem">
+        <img class = "menuPhoto" src="http://www.foodportfolio.com/b/wp-content/uploads/2010/09/test-078193.jpg">
+        </br><span class = "menuName">Cake</span>
+        <span class = "addButton"></span>
+        </br><span class = "menuPrice">$6.00</span>
+        <p class = "menuDescription"> Description to list flavours and ingredients to convince the customer they would like to buy the item. Length can vary.</p>
+      </div>
+    </div>
+
+
+    <!-- Initialize jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+    <script>
+
+    // ------------------- PLACE ORDER ---------------------
+    $('form').on('submit', function (event) {
+      event.preventDefault(); //Place order asynch.
+        $.ajax({
+            method: 'POST',
+            url: '/test',
+            data: $(this).serialize()
+          }).done(function () {
+            console.log('done');
+        });
+        $(this).trigger("reset");
+        $(this).find(".item").remove();
+        $("#totalCalc").text("$ 0.00");
+        $(this).addClass("hide");
+        $("#empty").text("Thank you for your order! You will recieve an SMS when it has been accepted!");
+        $('.addButtonActive').removeClass("addButtonActive").addClass("addButton");
+        $('.menuPhoto').removeClass("active");
+    });
+    // ------------------- ADD ITEM TO CART ---------------------
+
+    $("div#main").on( "click", ".addButton", function() {
+      let name = $(this).parent().find('.menuName').text();
+      let priceInitial = $(this).parent().find('.menuPrice').text();
+      let price = parseFloat(priceInitial.slice(1)).toFixed(2);
+      let image = $(this).parent().find('img').attr('src');
+      let item = `<div class = "item">
+                <div class = "circle"><img class = "circlePhoto" src="${image}"></div>
+                <span class = "itemName">${name}</span>
+                <input type = "hidden" name = "names[]" value = ${name} />
+                <span style = "float:right"><img class = "remove" width="20px" src = "http://www.freeiconspng.com/uploads/remove-icon-png-4.png"></span>
+                <span style = "float:right"><label for="quantity">Quantity:</label><input class="quantity" type="number" name="quantities[]" min="1" max="5" value="1"></span>
+                <p class = "itemPrice" value="${price}">$ ${price}</p>
+              </div>`; //This needs to be fixed so that it is not HTML string. See Tweetr
+      $('form#form').prepend(item);
+      $(this).removeClass('addButton').addClass('addButtonActive');
+      $(this).parent().find('.menuPhoto').addClass('active');
+    });
+
+    // ---------------- COSTS FOR EACH ITEM ----------------------
+    $("div.cart").on( "click", ".quantity", function() {
+     let quantity = $(this).parent().find('.quantity').val();
+     let priceEachString = $(this).parent().parent().find('.itemPrice').attr("value");
+     let priceEach = parseFloat(priceEachString);
+     let totalPriceItem = quantity * priceEach;
+      $(this).parent().parent().find('.itemPrice').text('$ ' + totalPriceItem.toFixed(2));
+    });
+
+    // ----------------- CALCULATING TOTAL --------------------
+    $(document).click(function(){
+      let sum = 0;
+        $('.itemPrice').each(function() {
+          let numberString = $(this).text();
+          let number = parseFloat(numberString.slice(2));
+            sum += number;
+        });
+        $("#totalCalc").text('$ ' + sum.toFixed(2));
+    });
+
+    // ----------------- REMOVE ITEM FROM CART --------------------
+
+    $("div.cart").on( "click", ".remove", function() {
+      let name = $(this).parent().parent().children('.itemName').text();
+      $("div#main").find("span:contains("+name+")").parent().find('.addButtonActive').removeClass("addButtonActive").addClass("addButton");
+       $("div#main").find("span:contains("+name+")").parent().find('.menuPhoto').removeClass("active");
+      $(this).parent().parent().remove();
+    });
+
+    // ----------------- ANYTHING IN CART? --------------------
+    $(document).click(function(){
+      let orderTotal = $("#totalCalc").text()
+      if (orderTotal === "$ 0.00"){ //Nothing in cart
+        $("#empty").text("You have nothing in your cart, and you're hungry! Get shopping!");
+        $("form").addClass("hide"); //Hide order form when cart is populated
+      }
+      else {
+        $("#empty").text("");
+        $("form").removeClass("hide"); //Display order form when cart is populated
+      }
+    });
+
+    </script>
   </body>
 </html>
+
+

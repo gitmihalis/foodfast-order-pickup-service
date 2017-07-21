@@ -1,0 +1,192 @@
+$font-title:    Helvetica;
+$brandGreen: #00a085;
+$brandOrange: #ff7109;
+$lightGrey: #ebebeb;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-title;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+header{
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: $brandGreen;
+}
+h1 {
+  font-family: $font-title;
+}
+
+
+/*-----------------------------MENU------------------------*/
+img.menuPhoto.active{
+    box-shadow: 1px 1px 10px #888888;
+}
+.addButton:before{
+  background-color: white;
+  float: right;
+  border-radius: 12%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $brandGreen;
+  color: $brandGreen;
+  text-transform: uppercase;
+  padding: 3px;
+  content: "add";
+}
+.addButton:hover:before{
+  background-color: $lightGrey;
+}
+.addButtonActive:before{
+background-color: #e1e1e1;
+float: right;
+border-radius: 12%;
+border-style: solid;
+border-width: 1px;
+border-color: #b9b9b9;
+color: #b9b9b9;
+text-transform: uppercase;
+padding: 3px;
+content: "added";
+}
+
+div#main{
+  position: absolute;
+  left: 350px;
+  margin: auto;
+  text-align: center;
+  padding: 40px;
+
+  h1{
+    color: $brandGreen;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 2.2em;
+    margin-top: 0;
+
+  }
+  div.menuItem{
+    display: inline-block;
+    background-color: white;
+    padding: 20px;
+    width: 200px;
+    text-align: left;
+
+    .menuName{
+      font-size: 1em;
+    }
+    .menuPrice{
+      font-size: 0.8em;
+      color: $brandGreen;
+    }
+    .menuDescription{
+      font-size: 0.8em;
+    }
+
+  }
+}
+
+
+/*-----------------------------CART------------------------*/
+form {
+  &.hide{
+    visibility: hidden;
+  }
+  #submit{
+  background-color: transparent;
+  color: $brandOrange;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brandOrange;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 30px 0 0 0;
+  }
+  #submit:hover{
+  background-color: $brandGreen;
+  color: white;
+  border: 2px solid $brandGreen;
+  }
+  .center{
+  text-align: center;
+  line-height: 2.0em;
+  font-size: 0.8em;
+  }
+}
+
+.circle{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 15px;
+  overflow: hidden;
+
+  img.circlePhoto{
+  height: 60px;
+  }
+}
+img.menuPhoto{
+  width: 160px;
+  height: 100px;
+}
+
+div.cart{
+  background-color: $lightGrey;
+  padding: 20px;
+  width: 350px;
+  height: inherit;
+  position: relative;
+  float: left;
+  left: 0px;
+
+  h1{
+    color: $brandGreen;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.8em;
+  }
+  #total{
+    border-top: 2px solid $brandGreen;
+    text-align: right;
+    text-transform: uppercase;
+    padding: 3px 0;
+    margin: 8px 0 0 0;
+  }
+  #empty{
+  font-size: 1.2em;
+  color: $brandGreen;
+  text-align: center;
+  }
+
+  div.item{
+    margin: 10px auto;
+    display: inline-block;
+    width: 100%;
+
+    .itemName{
+      padding-top: 5px;
+      font-size: 1em;
+      line-height: 1.1em;
+      text-transform: uppercase;
+    }
+    .itemPrice{
+      font-size: 0.8em;
+      line-height: 1em;
+      margin: 0;
+    }
+  }
+}

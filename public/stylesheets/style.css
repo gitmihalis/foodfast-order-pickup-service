@@ -1,8 +1,155 @@
+html {
+  box-sizing: border-box;
+  height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+  font-family: Helvetica;
+  margin: 0;
+  padding: 0;
+  height: 100%; }
+
+header {
+  margin: 0;
+  padding: 0; }
 
 a {
-  color: #00B7FF;
-}
+  color: #00a085; }
+
+h1 {
+  font-family: Helvetica; }
+
+/*-----------------------------MENU------------------------*/
+img.menuPhoto.active {
+  box-shadow: 1px 1px 10px #888888; }
+
+.addButton:before {
+  background-color: white;
+  float: right;
+  border-radius: 12%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #00a085;
+  color: #00a085;
+  text-transform: uppercase;
+  padding: 3px;
+  content: "add"; }
+
+.addButton:hover:before {
+  background-color: #ebebeb; }
+
+.addButtonActive:before {
+  background-color: #e1e1e1;
+  float: right;
+  border-radius: 12%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b9b9b9;
+  color: #b9b9b9;
+  text-transform: uppercase;
+  padding: 3px;
+  content: "added"; }
+
+div#main {
+  position: absolute;
+  left: 350px;
+  margin: auto;
+  text-align: center;
+  padding: 40px; }
+  div#main h1 {
+    color: #00a085;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 2.2em;
+    margin-top: 0; }
+  div#main div.menuItem {
+    display: inline-block;
+    background-color: white;
+    padding: 20px;
+    width: 200px;
+    text-align: left; }
+    div#main div.menuItem .menuName {
+      font-size: 1em; }
+    div#main div.menuItem .menuPrice {
+      font-size: 0.8em;
+      color: #00a085; }
+    div#main div.menuItem .menuDescription {
+      font-size: 0.8em; }
+
+/*-----------------------------CART------------------------*/
+form.hide {
+  visibility: hidden; }
+form #submit {
+  background-color: transparent;
+  color: #ff7109;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #ff7109;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 30px 0 0 0; }
+form #submit:hover {
+  background-color: #00a085;
+  color: white;
+  border: 2px solid #00a085; }
+form .center {
+  text-align: center;
+  line-height: 2.0em;
+  font-size: 0.8em; }
+
+.circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 15px;
+  overflow: hidden; }
+  .circle img.circlePhoto {
+    height: 60px; }
+
+img.menuPhoto {
+  width: 160px;
+  height: 100px; }
+
+div.cart {
+  background-color: #ebebeb;
+  padding: 20px;
+  width: 350px;
+  height: inherit;
+  position: relative;
+  float: left;
+  left: 0px; }
+  div.cart h1 {
+    color: #00a085;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1.8em; }
+  div.cart #total {
+    border-top: 2px solid #00a085;
+    text-align: right;
+    text-transform: uppercase;
+    padding: 3px 0;
+    margin: 8px 0 0 0; }
+  div.cart #empty {
+    font-size: 1.2em;
+    color: #00a085;
+    text-align: center; }
+  div.cart div.item {
+    margin: 10px auto;
+    display: inline-block;
+    width: 100%; }
+    div.cart div.item .itemName {
+      padding-top: 5px;
+      font-size: 1em;
+      line-height: 1.1em;
+      text-transform: uppercase; }
+    div.cart div.item .itemPrice {
+      font-size: 0.8em;
+      line-height: 1em;
+      margin: 0; }
+
+/*# sourceMappingURL=style.css.map */

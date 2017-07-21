@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+  </head>
+  <body>
+    <header>
+      <% include partials/_header %>
+    </header>
+
+<h1>Oder ID: 45</h1>
+<p>Date: Jan 3, 2017</p>
+<p>Cost: $25</p>
+<p>Status: pending</p>
+<p>Customer phone number: 444-444-4444</p>
+<p>Customer name: Laura </p>
+<p>Burger (1), Salad (2), Cake (1)</p>
+<p >Time remaining: <span id = "demo"></span></p>
+
+
+
+    <!-- Initialize jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+    <script>
+
+var date = new Date();
+var prep = 10;
+
+var prepMilli = prep * 60 * 1000;
+var countDownDate = new Date(date).getTime() + prepMilli;
+var x = setInterval(function() { // Update the count down every 1 second
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  // Time calculations for minutes and seconds
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+  // Display the result in the element with id="demo"
+  $("#demo").text(minutes + ":" + pad(seconds) + " minutes");
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    $("#demo").text('EXPIRED');
+  }
+}, 1000);
+
+</script>
+
+    </script>
+  </body>
+</html>
+
+

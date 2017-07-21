@@ -7,21 +7,20 @@ const twilioHelper = require('../twilio/helpers');
 
 
 router.post('/accept', (req, res) => {
-	res.send(twilioHelper.newOrder());
+	res.send(twilioHelper.helloWithOrder());
 })
 
 router.post('/eta', (req, res) => {
 	const digit = req.body.Digits;
-  return res.send(twilioHelper.menu(digit));
+
+  return res.send(twilioHelper.respondToConfirmation(digit));
 })
 
 router.post('/notify', (req, res) => {
-	res.send(twilioHelper.goodbye());
+	res.send(twilioHelper.goodbyeWithOrder());
 })
 
-
-
-
+router.post('/orders')
 
 // GET `/voice` 
 router.post('/voice', (req, res) => {

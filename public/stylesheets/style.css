@@ -21,25 +21,13 @@ a {
 h1 {
   font-family: Helvetica; }
 
-.circle {
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  float: left;
-  margin-right: 15px;
-  overflow: hidden; }
-  .circle img.circlePhoto {
-    height: 60px; }
-
-img.menuPhoto {
-  width: 160px;
-  height: 100px; }
-
 img.menuPhoto.active {
   box-shadow: 1px 1px 10px #888888; }
 
 .center {
-  text-align: center; }
+  text-align: center;
+  line-height: 2.0em;
+  font-size: 0.8em; }
 
 .addButton:before {
   background-color: white;
@@ -107,7 +95,23 @@ form #submit {
   margin: 30px 0 0 0; }
 form #submit:hover {
   background-color: #00a085;
-  color: white; }
+  color: white;
+  border: 2px solid #00a085; }
+
+/*---------CART-------------*/
+.circle {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-right: 15px;
+  overflow: hidden; }
+  .circle img.circlePhoto {
+    height: 60px; }
+
+img.menuPhoto {
+  width: 160px;
+  height: 100px; }
 
 div.cart {
   background-color: #ebebeb;

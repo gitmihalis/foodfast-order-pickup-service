@@ -7,16 +7,18 @@ const twilioHelper = require('../twilio/helpers');
 
 
 router.post('/accept', (req, res) => {
+	console.log('[/notify]:: ', req.body.Digits)
 	res.send(twilioHelper.helloWithOrder());
 })
 
-router.post('/eta', (req, res) => {
+router.post('/gather', (req, res) => {
 	const digit = req.body.Digits;
-
+	console.log('[/gather]:: ', digits);
   return res.send(twilioHelper.respondToConfirmation(digit));
 })
 
 router.post('/notify', (req, res) => {
+	console.log('[/notify]:: ', req.body.Digits)
 	res.send(twilioHelper.goodbyeWithOrder());
 })
 

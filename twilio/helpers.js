@@ -33,7 +33,21 @@ exports.goodbyeWithOrder = function goodbye() {
   return voiceResponse.toString();
 }
 
-// get the preperation time
+
+// There functions are used when responding to confirmation
+// 1. Dismiss the Order and end the call
+function dismissOrder() {
+  const voiceResponse = new VoiceResponse();
+
+  voiceResponse.say('Order dismissed.');
+  voiceResponse.say('Fare thee well');
+
+  voiceResponse.hangup();
+
+  return voiceResponse.toString();
+}
+
+// 2. Accept the order and gather the prep time
 function queryPreptime() {
   const voiceResponse = new VoiceResponse();
   const gather = voiceResponse.gather({
@@ -47,21 +61,7 @@ function queryPreptime() {
   return voiceResponse.toString();
 }
 
-function dismissOrder() {
-  const voiceResponse = new VoiceResponse();
-
-  voiceResponse.say('Order dismissed.');
-  voiceResponse.say('Fare thee well');
-
-  voiceResponse.hangup();
-
-  return voiceResponse.toString();
-}
-
-/**
- * Returns an xml with the redirect
- * @return {String}
- */
+// 3. Restart the order confirmations logic
 function redirectNewOrder() {
   const voiceResponse = new VoiceResponse();
   voiceResponse.redirect('/ivr');

@@ -24,6 +24,4 @@ router.post('/test', function(req, res){
   console.log(payMethod, customer, phone)
 });
 
-
-
 module.exports = router;

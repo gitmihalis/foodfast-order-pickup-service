@@ -1,5 +1,6 @@
 $font-title:    Helvetica;
 $brandGreen: #00a085;
+$brandOrange: #ff7109;
 $lightGrey: #ebebeb;
 
 html {
@@ -27,12 +28,17 @@ h1 {
   font-family: $font-title;
 }
 
-img.circlePhoto{
+.circle{
   border-radius: 50%;
   width: 60px;
   height: 60px;
   float: left;
   margin-right: 15px;
+  overflow: hidden;
+
+  img.circlePhoto{
+  height: 60px;
+  }
 }
 img.menuPhoto{
   width: 160px;
@@ -110,21 +116,21 @@ div#main{
 
   }
 }
-form {
 
+form {
   &.hide{
     visibility: hidden;
   }
   #submit{
   background-color: transparent;
-  color: $brandGreen;
+  color: $brandOrange;
   font-size: 1.2em;
   border-radius: 7px;
-  border: 2px solid $brandGreen;
+  border: 2px solid $brandOrange;
   text-transform: uppercase;
   padding: 10px 15px;
   vertical-align: middle;
-  margin: 10px 0 0 0;
+  margin: 30px 0 0 0;
   }
   #submit:hover{
   background-color: $brandGreen;
@@ -175,6 +181,7 @@ div.cart{
     .itemPrice{
       font-size: 0.8em;
       line-height: 1em;
+      margin: 0;
     }
   }
 }

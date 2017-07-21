@@ -1,0 +1,90 @@
+$font-title:    Helvetica;
+$brandGreen: #00a085;
+$brandOrange: #ff7109;
+$lightGrey: #ebebeb;
+$darkGrey: #585858;
+$middleGrey: #a7a7a7;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-title;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+header{
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: $brandGreen;
+}
+h1 {
+  font-family: $font-title;
+  color: $brandGreen;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 2.2em;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+}
+#allOrders{
+  padding: 20px;
+  border: solid 3px $middleGrey;
+  width: 90%;
+  max-width: 650px;
+  min-width: 450px;
+  margin: auto;
+  border-radius: 15px;
+  background-color: $lightGrey;
+  text-align: center;
+  h1{
+    font-family: $font-title;
+    text-transform: none;
+    color: $darkGrey;
+    margin: 0;
+    text-align: left;
+  }
+  .orderPhone{
+    font-size: 0.5em;
+  }
+  .orderDate{
+    font-size: 0.8em;
+    color: $brandGreen;
+    text-align: left;
+  }
+  .orderTimer{
+    float:right;
+    font-size: 3em;
+    color: $brandOrange;
+  }
+  .complete{
+    background-color: transparent;
+    border: solid 3px $brandGreen;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: $brandGreen;
+
+    &:hover{
+      background-color: $brandGreen;
+      color: white;
+    }
+  }
+  ul{
+    text-align: left;
+    font-size: 0.9em;
+    padding: 0 0 0 20px;
+    color: $darkGrey;
+  }
+}
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/order.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+  </head>
+  <body>
+    <header>
+      <% include partials/_header %>
+    </header>
+
+    <h1> Manage Orders </h1>
+    <div id = "allOrders">
+    <!-- Orders here! -->
+    </div>
+
+    <!-- Initialize jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+
+    <script>
+    //-------------FETCH FROM DATABASE --------
+      let name = "Order for " + "Laura" + " ";
+      let phone = `(905-444-4444)`;
+      let date = new Date();
+      let itemsArray = ['Burger', 'Salad', 'Cake'];
+      let quantityArray = [1, 2, 1];
+      let prep = 1;
+
+      let items = '';
+      for (let item in itemsArray){
+        items += `<li>${itemsArray[item]} (${quantityArray[item]})</li>`;
+      }
+    // ----------------SET HTML -------------
+      let orderPhone = $("<span>").addClass("orderPhone").text(phone);
+      let orderFor = $("<h1>").addClass("orderName").text(name).append(orderPhone);
+      let orderDate = $("<p>").addClass("orderDate").text(date);
+      let orderList = $("<ul>").addClass("orderList").html(items);
+      let orderTimer = $("<span>").addClass("orderTimer").text("");
+      let orderConfirm = $("<input>").attr("type", "submit").attr("value", "Complete").addClass("complete")
+      let orderConfirmInput = $("<input>").attr("type", "hidden").attr("value", "complete").attr("name", "status");
+      let form = $("<form>").append(orderConfirmInput, orderConfirm);
+      let order = $("<div>").append(orderFor, orderDate, orderTimer, orderList, form);
+
+    //-----------------TIMER------------------
+
+    let prepMilli = prep * 60 * 1000;
+    let countDownDate = new Date(date).getTime() + prepMilli;
+
+    let x = setInterval(function() { // Update the count down every 1 second
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
+
+      // Time calculations for minutes and seconds
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      //Pad the displayed number with zeros
+      function pad(d) {
+        return (d < 10) ? '0' + d.toString() : d.toString();
+      }
+        // Display the result in the element with class="orderTime"
+      let timer = minutes + ":" + pad(seconds) + "min";
+      $(".orderTimer").text(timer);
+      // If the count down is finished, order is overdue
+      if (distance < 0) {
+        clearInterval(x);
+        $(".orderTimer").text('OVERDUE');
+      }
+    }, 1000);
+
+    // ----------------ON PAGE LOAD-------------------
+    $( document ).ready(function() {
+    // ----------------ADD ORDERS-------------------
+      $("#allOrders").prepend(order);
+
+    //-------------COMPLETE ORDER -------------
+      $('form').on('submit', function (event) {
+        event.preventDefault(); //Place order asynch.
+          $.ajax({
+              method: 'POST',
+              url: '/complete',
+              data: $(this).serialize()
+            }).done(function () {
+              console.log('done');
+          });
+          $(this).trigger("reset");
+          $(this).parent().parent().remove();
+      });
+    });
+
+
+    </script>
+  </body>
+</html>
+
+

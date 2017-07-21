@@ -20,9 +20,9 @@ exports.seed = function(knex, Promise) {
         .del()
         .then(function () {
           return knex('items').insert([
-            {id: 1, quantity: 100, name: 'Salad', description: 'Lettuce, carrot, tomato, olive and yellow pepper', item_price: 12, picture_file: 'salad.png'},
-            {id: 2, quantity: 100, name: 'Hamburger', description: 'Bun, hamburger, bacon, lettuce and tomato', item_price: 15, picture_file: 'hamburger.png'},
-            {id: 3, quantity: 100, name: 'Cake', description: 'Delicious carrot cake', item_price: 6, picture_file: 'cake.png'}
+            {id: 1, quantity: 100, name: 'Eduardo Burger', description: 'A juicy sirloin burger on a sesame bun topped with: cheddar cheese, bacon, lettuce, tomato, and caramelized onions.', item_price: 9, picture_file: '/images/Burger.jpg'},
+            {id: 2, quantity: 100, name: 'Twilio Salad', description: 'Tasty lettuce chopped and combined with seasonal vegetables, feta, and homemade croutons. Currently featuring spinach, strawberries, and shredded carrots.', item_price: 7.5, picture_file: '/images/Salad.jpg'},
+            {id: 3, quantity: 100, name: 'Mihalis Soup', description: 'Delicious carrot cake', item_price: 6, picture_file: 'cake.png'}
           ]).then(function() {
             return knex('orderitems')
               .then(function () {

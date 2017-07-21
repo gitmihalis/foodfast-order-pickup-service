@@ -1,10 +1,10 @@
 const settings = require("./settings");
 const knex = require('knex') (require('./knexfile').development);
 
-const name = "Laura";
-const phone = "14164526666";
+const name = "John Doe";
+const phone = "14164527878";
 const items = [ "BMT", "Special", "Colorful"];
-const quantities = [ 3, 3, 3];
+const quantities = [ 4, 5, 6];
 
 const promises = () => {
   // retrieve all of records of items' table
@@ -41,7 +41,7 @@ promises()
         'cost': total,
         'name': name,
         'phone_number': phone,
-        'status': 'concluded'
+        'status': 'pending'
       }])
       .returning('id')
       .then(function (id) {

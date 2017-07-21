@@ -30,7 +30,12 @@ router.post('/test', function(req, res){
   let payMethod = req.body.payMethod;
   let customer = req.body.customerName;
   let phone = req.body.customerPhone;
-  console.log(payMethod, customer, phone)
+  console.log(payMethod, customer, phone);
+});
+
+router.post('/complete', function(req, res){
+  let status = req.body.status;
+  console.log(status);
 });
 
 router.get("/manager", (req, res) => {

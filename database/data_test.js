@@ -1,12 +1,10 @@
 const settings = require("./settings");
 const knex = require('knex') (require('./knexfile').development);
 
-const name = "Laura";
-const phone = "14164520000";
-const items = [ "BMT", "Special"];
-const quantities = [ 3, 4];
-
-// const prices = [];
+const name = "Richard";
+const phone = "14164523434";
+const items = [ "BMT", "Special", "Colorful"];
+const quantities = [ 4, 5, 6];
 
 const promises = () => {
   return knex.select('*')
@@ -34,113 +32,82 @@ promises()
       }
     });
 
-    /*knex('orders')
-      .insert([{
-        'cost': total,
-        'name': name,
-        'phone_number': phone,
-        'status': 'concluded'
-      }])
-      .asCallback((err, rows) => {
-        if (err) {
-          return console.error(err);
-        }
-    });*/
+    // knex('orders')
+    //   .insert([{
+    //     'cost': total,
+    //     'name': name,
+    //     'phone_number': phone,
+    //     'status': 'concluded'
+    //   }])
+    //   .asCallback((err, rows) => {
+    //     if (err) {
+    //       return console.error(err);
+    //     }
+    //   });
 
 
-          // console.log('a item object', items_object[item]['name']);
-    const promises1 = () => {
-      return new Promise((resolve, reject) => {
-        knex.select('id')
-          .from('orders')
-          .orderBy('id', 'desc')
-          .limit(1)
-          .then((rows) => {
-            return resolve(rows[0].id);
-          });
-
-      })
-    }
-
-    for (let i = 0; i < items.length; i++) {
-      promises1()
-        .then((result) => {
-          knex('orderitems')
-            .insert([{
-              'order_id': result,
-              'item_id': item_ids[i],
-              'quantity': quantities[i],
-              'paid_each': item_prices[i]
-            }])
-            .asCallback((err, rows) => {
-              if (err) {
-                return console.error(err);
-              }
+      const promises1 = () => {
+        return new Promise((resolve, reject) => {
+          knex.select('id')
+            .from('orders')
+            .orderBy('id', 'desc')
+            .limit(1)
+            .then((rows) => {
+              return resolve(rows[0].id);
             });
         })
-        .catch((err) => {
-          console.error('error: ', err);
-        })
-    }
-    console.log('finish...')
-  })
+      }
 
-// const promises = items.map((item) => {
-//   return knex.select('item_price')
-//     .from('items')
-//     .where('name', '=', item)
-//     .then((rows) => {
-//       return {"item_price":rows[0].item_price, "item_id":rows[0].id};
-//     });
-// });
+      const promises2 = (i) => {
+        return promises1()
+          .then((result) => {
+            knex('orderitems')
+              .insert([{
+                'order_id': result,
+                'item_id': item_ids[i],
+                'quantity': quantities[i],
+                'paid_each': item_prices[i]
+              }])
+              .asCallback((err, rows) => {
+                if (err) {
+                  return console.error(err);
+                }
+              });
+          })
+          .catch((err) => {
+            console.error('error: ', err);
+          })
+      }
 
-// Promise.all(promises)
 
-//   .then((prices) => {
-//     console.log('prices', prices);
-//     let total = 0;
-//     prices.map((price) => {
-//       console.log('price', price)
-//       // prices.push(price);
-//       total += +price;
-//     });
+      let promises_array = [];
 
-    /*knex('orders')
-      .insert([{
-        'cost': total,
-        'name': name,
-        'phone_number': phone,
-        'status': 'concluded'
-      }])
-      .asCallback((err, rows) => {
-        if (err) {
-          return console.error(err);
-        }
-      });*/
+      for (let item of items) {
+          let i = items.indexOf(item);
+        promises_array.push(promises2(i));
+      }
+let j = 0;
+      Promise.all(promises_array).then((value) => {
+        console.log('j', j);
+        console.log(value);
+        j++;
+      })
+
+
 
 
     // for (let i = 0; i < items.length; i++) {
-    //   const promises1 = () => {
-    //     return new Promise((resolve, reject) => {
-    //       knex.select('id')
-    //         .from('orders')
-    //         .orderBy('id', 'desc')
-    //         .limit(1)
-    //         .then((rows) => {
-    //           return resolve(rows[0].id);
-    //         });
 
-    //     })
-    //   }
+
+
     //   promises1()
     //     .then((result) => {
-    //       // console.log("result> " ,result);
     //       knex('orderitems')
     //         .insert([{
     //           'order_id': result,
-    //           'item_id': items[i],
+    //           'item_id': item_ids[i],
     //           'quantity': quantities[i],
-    //           'paid_each': prices[i]
+    //           'paid_each': item_prices[i]
     //         }])
     //         .asCallback((err, rows) => {
     //           if (err) {
@@ -152,40 +119,6 @@ promises()
     //       console.error('error: ', err);
     //     })
     // }
-  // })
-
-/*const promises1 = () => {
-      return new Promise((resolve, reject) => {
-        knex.select('id')
-          .from('orders')
-          .orderBy('id', 'desc')
-          .limit(1)
-          .then((rows) => {
-            return resolve(rows[0].id);
-          });
-
-      })
-    }
-
-    for (let i = 0; i < items.length; i++) {
-      promises1()
-        .then((result) => {
-          // console.log("result> " ,result);
-          knex('orderitems')
-            .insert([
-              'order_id': result,
-              'item_id': items[i],
-              'quantity': quantities[i],
-              'paid_each':
-            ])
-            .asCallback((err, rows) => {
-              if (err) {
-                return console.error(err);
-              }
-            });
-        })
-        .catch((err) => {
-          console.error('error: ', err);
-        })
-    }*/
+    console.log('finish...')
+  })
 

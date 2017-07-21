@@ -22,8 +22,8 @@ exports.seed = function(knex, Promise) {
           return knex('items').insert([
             {id: 1, quantity: 100, name: 'Eduardo Burger', description: 'A juicy sirloin burger on a sesame bun topped with: cheddar cheese, bacon, lettuce, tomato, and caramelized onions.', item_price: 9, picture_file: '/images/Burger.jpg'},
             {id: 2, quantity: 100, name: 'Twilio Salad', description: 'Tasty lettuce chopped and combined with seasonal vegetables, feta, and homemade croutons. Currently featuring spinach, strawberries, and shredded carrots.', item_price: 7.5, picture_file: '/images/Salad.jpg'},
-            {id: 3, quantity: 100, name: 'Mihalis Soup', description: 'A custom blend of fresh garden vegetables, depending on the season. Currently featuring carrots, squash, and oregano.', item_price: 6.5, picture_file: '/images/Soup.jpg'}
-            {id: 3, quantity: 100, name: 'Mihalis Soup', description: 'A moist carrot cake with cream cheese icing and layers of caramel. Topped with whipped cream.', item_price: 6.0, picture_file: '/images/Cake.jpg'}
+            {id: 3, quantity: 100, name: 'Mihalis Soup', description: 'A custom blend of fresh garden vegetables, depending on the season. Currently featuring carrots, squash, and oregano.', item_price: 6.5, picture_file: '/images/Soup.jpg'},
+            {id: 4, quantity: 100, name: 'Laura Cake', description: 'A moist carrot cake with cream cheese icing and layers of caramel. Topped with whipped cream.', item_price: 6.0, picture_file: '/images/Cake.jpg'}
           ]).then(function() {
             return knex('orderitems')
               .then(function () {

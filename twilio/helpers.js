@@ -1,15 +1,17 @@
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-exports.helloWithOrder = function newOrder() {
+exports.orderNotification = function newOrder(order) {
   const voiceResponse = new VoiceResponse();
-
   const gather = voiceResponse.gather({
     action: '/ivr/gather',
     numDigits: '1',
     method: 'POST',
   });
 
-  gather.say('order made, press 1 to confirm, 2 to dismiss');
+  gather.say(`Order ${order.id} from ${order.phone}`);
+  gather.say(`Order of ${order.items}`);
+  gather.say("Press 1 to confirm");
+  gather.say("To dismiss, press 2 or hangup now.")
   // redirectNewOrder();
   return voiceResponse.toString();
 };

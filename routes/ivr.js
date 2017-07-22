@@ -1,19 +1,25 @@
 
 const express = require('express');
 const router = express.Router();
+// Twilio =========================
 const twilioHelper = require('../twilio/helpers');
+// DATABASE ======================
+const settings = require("../database/settings");
+const knex = require('knex')(settings).development);
+const Order = require('../lib/order')(knex);
+// ROUTES ===============
 
-
-
-router.post('/accept', (req, res) => {
-	console.log('[/accept]:: ', req.body.Digits)
-	// database helper ==> saves order to databse
-	res.send(twilioHelper.helloWithOrder());
+router.post('/greeting', (req, res) => {
+		// retrieve the order from database
+	Order.
+		// pass the order info to twilio
+	console.log('[ from /greeting]:: ', req.body.Digits)
+	res.send(twilioHelper.orderNotification());
 })
 
 router.post('/gather', (req, res) => {
 	const digit = req.body.Digits;
-	
+
 	console.log('[/gather](confirmation):: ', digit);
   res.send(twilioHelper.respondToConfirmation(digit));
 })
@@ -42,15 +48,7 @@ router.post('/notify', (req, res) => {
 // }
 
 router.post('/sms', (req, res) => {
-	client.messages.create({
-	  body: ' 🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
-		}).then((msg) => {
-			process.stdout.write(msg.sid);
-			res.status(200).send();
-			// res.status('201').send(call);
-		}).catch((err) => console.log(err));
+
 });
 
 

@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 
 /* POST Place a new order to be confirmed by the client */
 router.post('/', (req, res) => {
+	// Build the order object
 	const newOrder = { 
 		    name: req.body.customerName,
         cost: req.body.cost,
@@ -22,9 +23,9 @@ router.post('/', (req, res) => {
 
 	Order.create_order(newOrder)
 		.then( (response) => {
-		// initiate call to twillio...
+		// TODO - make phone call to client
 			client.calls.create({
-		  	url: 'https://foodfast.fwd.wf/ivr/accept',
+		  	url: 'https://foodfast.fwd.wf/ivr/greeting',
 		  	to: process.env.TEST_NUMBER,
 		  	from: process.env.TWILIO_NUMBER,
 			})
@@ -33,6 +34,31 @@ router.post('/', (req, res) => {
 			})
 		})
 });
+
+router.post('/pickup', (req, res) => {
+	// authenticate user... 
+	client.messages.create({
+	  body: '🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
+	  to: process.env.TEST_NUMBER,
+	  from: process.env.TWILIO_NUMBER,
+	}).then((msg) => {
+		process.stdout.write(msg.sid);
+		res.status(200).json({});
+		// res.status('201').send(call);
+	}).catch((err) => console.log(err));
+})
+
+router.post('/', (req, res) => {
+	client.messages.create({
+	  body: ' 🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
+	  to: process.env.TEST_NUMBER,
+	  from: process.env.TWILIO_NUMBER,
+	}).then((msg) => {
+		process.stdout.write(msg.sid);
+		res.status(200).send();
+		// res.status('201').send(call);
+	}).catch((err) => console.log(err));
+}
 
 /* GET show an order . */
 router.get('/:id', function(req, res) {

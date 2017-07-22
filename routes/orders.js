@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 	Order.create_order(newOrder).then( (response) => {
 		res.status(201).json();
 	}).catch( err => {
-		res.status(500).send();
+		res.status(500).json({error: 'Order was not saved'});
 	})
 });
 

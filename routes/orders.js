@@ -1,16 +1,26 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const knex = require('knex') (require('../database/knexfile').development);
+const Order = require('../lib/order')(knex);
 
 /* GET menu */
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.render('menu', { title: 'Place your order' });
 });
 
 /* POST place order */
-router.post('/', function(req, res) {
-	const order = {}
-	// save order and show 
-  res.redirect('show', {order});
+router.post('/', (req, res) => {
+	const newOrder = { 
+		    name: req.body.customerName,
+        cost: req.body.cost,
+        status: 'pending',
+        phone_number: req.body.customerPhone,
+        estimated_time: null,
+	};
+	const order = Order.create_order(newOrder);
+	if (order) res.status(201).send(order);
+	res.status(500).send();
 });
 
 /* GET show an order . */

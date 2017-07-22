@@ -30,15 +30,16 @@ router.post('/gather/:order_id', (req, res) => {
 router.post('/notify/:order_id', (req, res) => {
 	const digit = req.body.Digits;
 	const id = req.params.order_id;
-	const order = Order.update_order(
-		id, // order to update
-		['status', 'estimated_time'], // keys 
-		['preparing', digit] // values
-	);
-	order.then().catch()
-	console.log('update returns ', order)
-	// update returns  Promise { <pending> }
-	// twilioHelper.goodbyeWithOrder(order.id);
+	knex('orders').where({id: id})
+    .update({
+    	status: 'preparing',
+    	estimated_time: digit
+    }).then( () => {
+    	res.status(200).send(twilioHelper.goodbyeWithOrder(id))	
+    }).catch((err) => {
+    	console.log('[^ Error updating order ',err)
+    	res.redirect('/');
+    })
 })
 
 

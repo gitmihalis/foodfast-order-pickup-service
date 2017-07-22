@@ -14,28 +14,30 @@ router.post('/greeting/:order_id', (req, res) => {
 
 	Order.find_by_id(req.params.order_id)
 		.then( order => {
+			console.log('find by order, returned: ', order)
 			res.send(twilioHelper.orderNotification(order));
 		})
 		.catch( () => res.status(404).json({msg: 'order not found'}))
-		// pass the order info to twilio
-	// console.log('[ from /greeting]:: ', req.body.Digits)
-
 })
 
-router.post('/gather', (req, res) => {
+
+
+
+router.post('/gather/:order_id', (req, res) => {
 	const digit = req.body.Digits;
-
-	// 
-
-	console.log('[/gather](confirmation):: ', digit);
-  res.send(twilioHelper.respondToConfirmation(digit));
+	const orderID = req.params.order_id;
+  res.send(twilioHelper.respondToConfirmation(digit, orderID));
 })
 
-router.post('/notify', (req, res) => {
+
+
+
+router.post('/notify/:order_id', (req, res) => {
 	const digit = req.body.Digits;
-	console.log('[/notify]:: ', req.body.Digits)
-	// database helper ==> sets prep time
-	res.send(twilioHelper.goodbyeWithOrder(digit));
+	const id = req.params.order_id;
+	Order.find_by_id(id)
+		.then( order => res.send(twilioHelper.goodbyeWithOrder(order)))
+		.catch( err => console.log('/notify', err))
 	//
 })
 

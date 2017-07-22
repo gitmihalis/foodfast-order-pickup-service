@@ -5,7 +5,8 @@ $lightGrey: #ebebeb;
 
 html {
   box-sizing: border-box;
-  height: 100%;
+  height: 110%;
+  position: relative;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -15,7 +16,7 @@ body {
   font-family: $font-title;
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 110%;
 }
 header{
   margin: 0;
@@ -27,7 +28,6 @@ a {
 h1 {
   font-family: $font-title;
 }
-
 
 /*-----------------------------MENU------------------------*/
 img.menuPhoto.active{
@@ -67,6 +67,7 @@ div#main{
   margin: auto;
   text-align: center;
   padding: 40px;
+  min-height: 100vh;
 
   h1{
     color: $brandGreen;
@@ -81,7 +82,7 @@ div#main{
     vertical-align:top;
     background-color: white;
     padding: 20px;
-    width: 200px;
+    width: 280px;
     text-align: left;
 
     .menuName{
@@ -141,8 +142,8 @@ form {
   }
 }
 img.menuPhoto{
-  width: 160px;
-  height: 100px;
+  width: 240px;
+  height: 160px;
 }
 
 div.cart{

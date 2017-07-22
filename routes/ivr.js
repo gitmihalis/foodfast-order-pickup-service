@@ -5,20 +5,27 @@ const router = express.Router();
 const twilioHelper = require('../twilio/helpers');
 // DATABASE ======================
 const settings = require("../database/settings");
-const knex = require('knex')(settings).development);
+const knex = require('knex') (require('../database/knexfile').development);
 const Order = require('../lib/order')(knex);
 // ROUTES ===============
 
-router.post('/greeting', (req, res) => {
+router.post('/greeting/:order_id', (req, res) => {
 		// retrieve the order from database
-	Order.
+
+	Order.find_by_id(req.params.order_id)
+		.then( order => {
+			res.send(twilioHelper.orderNotification(order));
+		})
+		.catch( () => res.status(404).json({msg: 'order not found'}))
 		// pass the order info to twilio
-	console.log('[ from /greeting]:: ', req.body.Digits)
-	res.send(twilioHelper.orderNotification());
+	// console.log('[ from /greeting]:: ', req.body.Digits)
+
 })
 
 router.post('/gather', (req, res) => {
 	const digit = req.body.Digits;
+
+	// 
 
 	console.log('[/gather](confirmation):: ', digit);
   res.send(twilioHelper.respondToConfirmation(digit));
@@ -29,6 +36,7 @@ router.post('/notify', (req, res) => {
 	console.log('[/notify]:: ', req.body.Digits)
 	// database helper ==> sets prep time
 	res.send(twilioHelper.goodbyeWithOrder(digit));
+	//
 })
 
 // GET `/voice` 

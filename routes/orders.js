@@ -22,10 +22,11 @@ router.post('/', (req, res) => {
 	};
 
 	Order.create_order(newOrder)
-		.then( (response) => {
+		.then( id => {
 		// TODO - make phone call to client
+		  console.log('[^ order # ' + id + ' created ]');
 			client.calls.create({
-		  	url: 'https://foodfast.fwd.wf/ivr/greeting',
+		  	url: 'https://foodfast.fwd.wf/ivr/greeting/' + id ,
 		  	to: process.env.TEST_NUMBER,
 		  	from: process.env.TWILIO_NUMBER,
 			})
@@ -58,7 +59,7 @@ router.post('/', (req, res) => {
 		res.status(200).send();
 		// res.status('201').send(call);
 	}).catch((err) => console.log(err));
-}
+});
 
 /* GET show an order . */
 router.get('/:id', function(req, res) {

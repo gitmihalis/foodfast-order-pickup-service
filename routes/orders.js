@@ -18,9 +18,11 @@ router.post('/', (req, res) => {
         phone_number: req.body.customerPhone,
         estimated_time: null,
 	};
-	const order = Order.create_order(newOrder);
-	if (order) res.status(201).send(order);
-	res.status(500).send();
+	Order.create_order(newOrder).then( (response) => {
+		res.status(201).json();
+	}).catch( err => {
+		res.status(500).send();
+	})
 });
 
 /* GET show an order . */

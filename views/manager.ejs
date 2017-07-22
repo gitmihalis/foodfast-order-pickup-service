@@ -5,6 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/order.css' />
     <link rel='stylesheet' href='/stylesheets/header.css' />
     <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../test.js"></script>
   </head>
   <body>
     <header>
@@ -12,15 +17,12 @@
     </header>
 
     <h1> Manage Orders </h1>
-    <div id = "allOrders">
+    <div id="listOrders">
+
     <!-- Orders here! -->
     </div>
 
     <!-- Initialize jQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-      crossorigin="anonymous">
-    </script>
 
     <script>
     //-------------FETCH FROM DATABASE --------
@@ -74,9 +76,9 @@
     }, 1000);
 
     // ----------------ON PAGE LOAD-------------------
-    $( document ).ready(function() {
-    // ----------------ADD ORDERS-------------------
-      $("#allOrders").prepend(order);
+    $(document).ready(function(){
+      loadOrders();
+      //$("#allOrders").prepend(order);
 
     //-------------COMPLETE ORDER -------------
       $('form').on('submit', function (event) {

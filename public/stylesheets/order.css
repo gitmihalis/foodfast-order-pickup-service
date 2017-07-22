@@ -37,7 +37,8 @@ h1 {
   margin: auto;
   border-radius: 15px;
   background-color: #ebebeb;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 20px; }
   #allOrders h1 {
     font-family: Helvetica;
     text-transform: none;

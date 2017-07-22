@@ -5,6 +5,7 @@ const settings = require("../database/settings");
 const knex = require('knex') (require('../database/knexfile').development);
 const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
+const Order = require('../lib/order')(knex);
 const fs = require("fs");
 const request = require("request");
 
@@ -23,6 +24,16 @@ router.get('/', function(req, res, next) {
 
 router.get('/testtwo', function(req, res, next){
   Table.find_all('items')
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
+router.get('/testthree', function(req, res, next){
+  Order.find_by_status('pending')
   .then((table) => {
     res.json(table);
   })
@@ -51,11 +62,21 @@ router.post('/test', function(req, res){
 });
 
 router.post('/add', function(req, res){
-
+  res.status(200);
   let name = req.body.name;
-  let url = req.body.url;
-  let price = parseFloat(req.body.price);
   let description = req.body.description;
+  let item_price = parseFloat(req.body.price);
+  let discount = null;
+  let picture_file = req.body.url;
+  let quantity = 10;
+  Item.create_item(name, description, item_price, discount, picture_file, quantity)
+  .then(() => {
+    console.log("done");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  res.redirect("/");
 });
 
 router.post('/complete', function(req, res){

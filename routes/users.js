@@ -1,23 +1,28 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
+
+const knex = require('knex') (require('../database/knexfile').development);
+const User = require('../lib/client')(knex);
 
 router.post('/register', (req, res) => {
+  console.log(req.body);
   if (!req.body.email || !req.body.password) {
     // If the registration form was submitted without a value for email or
     // password, then set an error message and redirect.
-    req.flash('errors', 'email and password are required');
+    // req.flash('errors', 'email and password are required');
     res.redirect('/');
     // IMPORTANT: always return after sending a response, whether it's a
     // redirect, render, send, end, json, or whatever.
     return;
   }
-  User.add(req.body.email, req.body.password)
+  User.create_client(req.body.email, req.body.password, req.body.name)
   .then(() => {
     // This callback will be called after the promise returned by the last
     // call to .then has resolved. That happens after the user is inserted
     // into the database.
-    req.flash('info', 'account successfully created');
-    res.redirect('/');
+    // req.flash('info', 'account successfully created');
+    res.redirect('/manager');
   }).catch((err) => {
     // In the even that an error occurred at any point during the promise
     // chain, add the error message to the flash errors and redirect.
@@ -36,7 +41,7 @@ router.post('/login', (req, res) => {
     // In the event that an error occurred at any point during the promise
     // chain, add the error message to the flash errors and redirect.
     req.flash('errors', err.message);
-    res.redirect('/manager');
+    res.redirect('/users');
   });
 });
 

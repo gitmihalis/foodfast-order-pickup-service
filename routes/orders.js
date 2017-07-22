@@ -36,6 +36,17 @@ router.post('/', (req, res) => {
 		})
 });
 
+router.get('/sms', (req, res) => {
+	const estimate_time = req.query.time;
+		client.messages.create({
+	  body: `Food Bagz is perparing your order. We'll alert you when it's ready! ...(${req.query.time} minutes)`,
+	  to: process.env.TEST_NUMBER,
+	  from: process.env.TWILIO_NUMBER,
+	}).then((msg) => {
+		res.status('200').send(msg.sid);
+	}).catch((err) => console.log(err));
+})
+
 router.post('/pickup', (req, res) => {
 	// authenticate user... 
 	client.messages.create({

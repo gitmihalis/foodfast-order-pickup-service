@@ -18,7 +18,7 @@
        hungry! Get shopping!</span>
 
       <!-- Cart Form Starts -->
-      <form id = "form" class = "hide" action="/test" method="POST">
+      <form id = "form" class = "hide">
       <!-- Cart items go here  -->
       <div id="total">
       Total:
@@ -93,7 +93,7 @@
       event.preventDefault(); //Place order asynch.
         $.ajax({
             method: 'POST',
-            url: '/test',
+            url: '/orders',
             data: $(this).serialize()
           }).done(function () {
             console.log('done');

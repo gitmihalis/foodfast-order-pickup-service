@@ -20,7 +20,7 @@ router.post('/test', function(req, res){
     let name = req.body['names[]'];
     let quantity = parseInt(req.body['quantities[]']);
     console.log(name, quantity);
-  } else{
+  } else {
     for (let value in req.body['quantities[]']){
       let name = req.body['names[]'][value];
       let quantity = parseInt(req.body['quantities[]'][value]);

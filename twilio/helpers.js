@@ -20,12 +20,12 @@ exports.orderNotification = function orderNotification(order) {
 exports.respondToConfirmation = function menu(digit, id) {
   const orderID = id;
   const optionActions = {
-    '1': queryPreptime,
+    '1': getEstimatedTime,
     '2': dismissOrder,
   };
   return (optionActions[digit])
     ? optionActions[digit](orderID)
-    : redirectNewOrder(id);
+    : loopOrder(id);
 }
 
 // There functions are used when responding to confirmation
@@ -42,7 +42,7 @@ function dismissOrder(id) {
 }
 
 // 2. Accept the order and gather the prep time
-function queryPreptime(id) {
+function getEstimatedTime(id) {
   const voiceResponse = new VoiceResponse();
   const gather = voiceResponse.gather({
   action: '/ivr/notify/' + id,
@@ -68,7 +68,7 @@ exports.goodbyeWithOrder = function (order) {
 
 
 // 3. Restart the order confirmations logic
-function redirectNewOrder(id) {
+function loopOrder(id) {
   const voiceResponse = new VoiceResponse();
   voiceResponse.redirect('/ivr/greeting/' + id );
   return voiceResponse.toString();

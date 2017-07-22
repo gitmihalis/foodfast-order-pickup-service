@@ -36,6 +36,7 @@ router.post('/notify/:order_id', (req, res) => {
 	const digit = req.body.Digits;
 	const id = req.params.order_id;
 	Order.find_by_id(id)
+	// TODO :: update the order with an `estimated_time`
 		.then( order => res.send(twilioHelper.goodbyeWithOrder(order)))
 		.catch( err => console.log('/notify', err))
 	//

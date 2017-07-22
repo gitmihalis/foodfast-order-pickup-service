@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-//const settings = require("../database/settings");
+const settings = require("../database/settings");
+const knex = require('knex') (require('../database/knexfile').development);
+const Item = require('../lib/item')(knex);
+const Table = require('../lib/table')(knex);
+
 //const knex = require('knex') (require('../database/knexfile').development);
 
 //const Client = require('./client')(knex);
@@ -14,6 +18,17 @@ const router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
+router.get('/testtwo', function(req, res, next){
+  Table.find_all('items')
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
 
 router.post('/test', function(req, res){
   if (!req.body['quantities[]'][1]){

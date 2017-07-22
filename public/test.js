@@ -7,8 +7,8 @@ function load() {
   });
 }
 
- function display(object){
-    $("#empty").text(object[0].description);
-    console.log(object);
-    console.log(object[0]);
-  }
+function display(object){
+  $("#empty").text(object[0].description);
+  console.log(object);
+  console.log(object[0]);
+}

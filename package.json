@@ -14,9 +14,12 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
+    "fs": "0.0.1-security",
     "knex": "^0.13.0",
     "morgan": "^1.8.2",
     "pg": "^7.0.2",
+    "request": "^2.81.0",
+    "save-pixels": "^2.3.4",
     "serve-favicon": "^2.4.3",
     "twilio": "^3.5.0"
   }

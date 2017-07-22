@@ -4,7 +4,7 @@ exports.helloWithOrder = function newOrder() {
   const voiceResponse = new VoiceResponse();
 
   const gather = voiceResponse.gather({
-    action: '/ivr/eta',
+    action: '/ivr/gather',
     numDigits: '1',
     method: 'POST',
   });
@@ -23,13 +23,13 @@ exports.respondToConfirmation = function menu(digit) {
 
   return (optionActions[digit])
     ? optionActions[digit]()
-    : redirectNewOrder();
+    : goodbyeWithOrder();
 }
 
 exports.goodbyeWithOrder = function goodbye() {
   const voiceResponse = new VoiceResponse();
-
   voiceResponse.say('Alerting the customer. goodbye');
+  voiceResponse.hangup();
   return voiceResponse.toString();
 }
 

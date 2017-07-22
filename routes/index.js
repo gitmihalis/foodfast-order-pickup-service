@@ -5,6 +5,8 @@ const settings = require("../database/settings");
 const knex = require('knex') (require('../database/knexfile').development);
 const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
+const fs = require("fs");
+const request = require("request");
 
 //const knex = require('knex') (require('../database/knexfile').development);
 
@@ -48,15 +50,29 @@ router.post('/test', function(req, res){
   console.log(payMethod, customer, phone);
 });
 
+router.post('/add', function(req, res){
+
+  let name = req.body.name;
+  let url = req.body.url;
+  let price = parseFloat(req.body.price);
+  let description = req.body.description;
+});
+
 router.post('/complete', function(req, res){
   let status = req.body.status;
   console.log(status);
 });
 
-router.get("/manager", (req, res) => {
+router.get("/users/manager", (req, res) => {
   //let templateVars = { user: users[req.session.user_id] };
   res.status(200);
   res.render("manager");
+});
+
+router.get("/users/add", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("add");
 });
 
 

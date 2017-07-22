@@ -5,6 +5,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/header.css' />
     <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="test.js"></script>
+
   </head>
   <body>
     <header>
@@ -80,13 +87,22 @@
       </div>
     </div>
 
+<!-- <div class = "item">
+                <div class = "circle"><img class = "circlePhoto" src="${image}"></div>
+                <span class = "itemName">${name}</span>
+                <input type = "hidden" name = "names[]" value = ${name} />
+                <span style = "float:right"><img class = "remove" width="20px" src = "http://www.freeiconspng.com/uploads/remove-icon-png-4.png"></span>
+                <span style = "float:right"><label for="quantity">Quantity:</label><input class="quantity" type="number" name="quantities[]" min="1" max="5" value="1"></span>
+                <p class = "itemPrice" value="${price}">$ ${price}</p>
+</div> -->
 
-    <!-- Initialize jQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.js"
-      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-      crossorigin="anonymous">
-    </script>
+
+
     <script>
+
+    $(document).ready(function(){
+      load();
+    })
 
     // ------------------- PLACE ORDER ---------------------
     $('form').on('submit', function (event) {
@@ -125,6 +141,8 @@
       $(this).removeClass('addButton').addClass('addButtonActive');
       $(this).parent().find('.menuPhoto').addClass('active');
     });
+
+
 
     // ---------------- COSTS FOR EACH ITEM ----------------------
     $("div.cart").on( "click", ".quantity", function() {
@@ -169,6 +187,7 @@
     });
 
     </script>
+
   </body>
 </html>
 

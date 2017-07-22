@@ -60,7 +60,4 @@ router.get("/manager", (req, res) => {
 });
 
 
-
-
-
 module.exports = router;

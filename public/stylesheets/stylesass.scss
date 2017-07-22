@@ -78,6 +78,7 @@ div#main{
   }
   div.menuItem{
     display: inline-block;
+    vertical-align:top;
     background-color: white;
     padding: 20px;
     width: 200px;
@@ -89,6 +90,7 @@ div#main{
     .menuPrice{
       font-size: 0.8em;
       color: $brandGreen;
+      margin-top: 2px;
     }
     .menuDescription{
       font-size: 0.8em;

@@ -66,6 +66,7 @@ div#main {
     margin-top: 0; }
   div#main div.menuItem {
     display: inline-block;
+    vertical-align: top;
     background-color: white;
     padding: 20px;
     width: 200px;
@@ -74,7 +75,8 @@ div#main {
       font-size: 1em; }
     div#main div.menuItem .menuPrice {
       font-size: 0.8em;
-      color: #00a085; }
+      color: #00a085;
+      margin-top: 2px; }
     div#main div.menuItem .menuDescription {
       font-size: 0.8em; }
 

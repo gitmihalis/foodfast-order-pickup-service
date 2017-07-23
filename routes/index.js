@@ -6,7 +6,7 @@ const knex = require('knex') (require('../database/knexfile').development);
 const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
 const Order = require('../lib/order')(knex);
-const OrderItems = require('../lib/orderitems')(knex);
+const OrderItems = require('../lib/order_items')(knex);
 
 const fs = require("fs");
 const request = require("request");
@@ -49,7 +49,7 @@ router.get('/testthree', function(req, res, next){
 });
 
 router.get('/testfour', function(req, res, next){
-  OrderItems.find_by_id(parseInt(req.query.id))
+  OrderItems.find_by_order_id(parseInt(req.query.id))
   .then((table) => {
     res.json(table);
   })

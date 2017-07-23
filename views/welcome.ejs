@@ -5,36 +5,37 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/header.css' />
     <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+    <link rel='stylesheet' href="/stylesheets/welcome.css" type="text/css"/>
   </head>
   <style>
-    .button {
-      font-size: 3em;
-      box-shadow: 0 0 10px #aaa;
-      border-radius: 2%;
-    }
-    .button.big {
-      padding: 10px 20px;
-      margin: 1em;
-      color: white;
-    }
-    #customer {
-      background: #af34da;
-    }
-    #manager {
-      background: orange;
-    }
 
   </style>
   <body>
     <header>
       <% include partials/_header %>
     </header>
+    <div id = "container">
+      <div id="welcome">
+        <h2>Ordering food has never been faster.</h2><br>
 
-    <div class="welcome">
-      <h2>Welcome to foodfast!</h2>
-      <a class="button big" id="customer" href="/">order Now</a>
-      <a class="button big" id="manager" href="/orders">Manage</a>
+        <div id = "forOrder">
+          <p>For the hungry:</p>
+          <a class="button" id="customer" href="/">Order</a>
+        </div>
+        <div id = "forManage">
+          <p>For restaurant owners:</p>
+          <a class="button" id="manager" href="/orders">Manage</a>
+        </div><br>
+
+        <div class = "description">
+          <p> <i class="fa fa-mobile" aria-hidden="true" style="font-size: 2em;"></i>  <u>We keep you in the loop:</u> order confirmations sent directly to your phone. </p>
+          <p><i class="fa fa-clock-o" aria-hidden="true" style="font-size: 1.8em;"></i> <u>No guessing involved:</u> recieve wait-time notifications.</p>
+          <p><i class="fa fa-check-square-o" aria-hidden="true" style="font-size: 1.8em;"></i>
+ <u>Ta-da!</u> notified when your food is ready.</p>
+        </div>
+      </div>
     </div>
+</div>
 
   </body>
 </html>

@@ -1,0 +1,50 @@
+#container {
+  background-image: url("../images/home_image.jpg");
+  background-size: 1600px;
+  background-position: center;
+  background-repeat: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding-top: 50px; }
+  #container #welcome {
+    padding: 30px;
+    margin: auto;
+    width: 800px;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 450px; }
+    #container #welcome h2 {
+      text-align: center;
+      margin: 0;
+      padding: 50px 0 0 0;
+      font-size: 1.6em; }
+    #container #welcome p {
+      font-size: 0.9em; }
+    #container #welcome a.button {
+      font-size: 1em;
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      text-transform: uppercase;
+      border-radius: 7px;
+      padding: 15px;
+      width: 240px;
+      text-align: center;
+      display: inline-block; }
+      #container #welcome a.button:hover {
+        background-color: rgba(0, 0, 0, 0.4); }
+    #container #welcome .description {
+      padding: 30px 110px;
+      margin-top: 30px; }
+    #container #welcome #forOrder {
+      width: 370px;
+      height: 120px;
+      float: left;
+      text-align: center; }
+    #container #welcome #forManage {
+      width: 370px;
+      float: right;
+      height: 120px;
+      text-align: center; }
+
+/*# sourceMappingURL=welcome.css.map */

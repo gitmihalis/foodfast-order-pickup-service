@@ -1,0 +1,24 @@
+#container {
+  background-image: url("../images/home_image.jpg");
+  background-size: 1600px;
+  background-position: center;
+  background-repeat: none;
+  width: 100%;
+  height: 100%;
+  color: white; }
+  #container #welcome {
+    width: 800px;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 400px; }
+    #container #welcome h2 {
+      text-align: center; }
+    #container #welcome p {
+      text-align: center; }
+    #container #welcome #forOrder {
+      width: 200px;
+      float: left; }
+    #container #welcome #forManage {
+      width: 200px;
+      float: right; }
+
+/*# sourceMappingURL=welcome.css.map */

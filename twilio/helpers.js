@@ -12,10 +12,10 @@ exports.orderNotification = function orderNotification(orderArr) {
   });
 
   gather.say(`Order ${order.id} from ${order.phone_number}`);
-  // items.forEach( (item, index => {
-  //   gather.say(item.name);
-  //   gather.say(item.quantity);
-  // })
+  items.forEach( (item) => {
+    gather.say(item.name);
+    gather.say(item.quantity);
+  })
   gather.say("Press 1 to confirm");
   gather.say("To dismiss, press 2 or hangup now.")
   // redirectNewOrder();

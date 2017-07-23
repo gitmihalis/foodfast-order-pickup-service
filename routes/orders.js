@@ -7,8 +7,9 @@ const Order = require('../lib/order')(knex);
 
 /* GET menu */
 router.get('/', (req, res) => {
-	// find all orders in database and list
-  res.render('menu', { title: 'Place your order' });
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("manager", {title: 'Orders list'});
 });
 
 /* POST Place a new order to be confirmed by the client */
@@ -39,12 +40,6 @@ router.get('/sms', (req, res) => {
 		res.status('200').send(msg.sid);
 	}).catch((err) => console.log(err));
 })
-
-router.get("/orders", (req, res) => {
-  //let templateVars = { user: users[req.session.user_id] };
-  res.status(200);
-  res.render("manager");
-});
 
 
 module.exports = router;

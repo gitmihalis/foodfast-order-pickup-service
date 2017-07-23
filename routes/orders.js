@@ -13,8 +13,9 @@ router.get('/', (req, res) => {
 
 /* POST Place a new order to be confirmed by the client */
 router.post('/', (req, res) => {
-	// `create_order` params: (name, cost, status, phone_number, estimated_time)
-	Order.create_order( req.body.customerName, req.body.cost, req.body.status, req.body.phone_number, req.body.estimated_time)
+	// * 
+	// `create_order params are are follows[ name, cost, status, phone_number, estimated_time ] 
+	Order.create_order( req.body.customerName, Number(req.body.cost), req.body.status, req.body.phone_number, req.body.estimated_time)
 		.then( id => {
 		  console.log('[^ order # ' + id + ' created ]');
 			client.calls.create({
@@ -22,9 +23,9 @@ router.post('/', (req, res) => {
 		  	to: process.env.TEST_NUMBER,
 		  	from: process.env.TWILIO_NUMBER,
 			})
-			res.status(201).json({message: 'Order created!'});
+			res.render('/thank_you', {orderID: id});
 		}).catch( (err) => {
-			res.status(500).json({error: 'Order was not saved'});
+			res.status(500).json({error: 'Oops, order was not accepted.'});
 		})
 });
 

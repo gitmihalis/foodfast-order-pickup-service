@@ -12,7 +12,6 @@ function createMenu(data){
   let menu = $("<div>").addClass("menuItem").append(menuPhoto, menuName, menuButton, menuPrice, menuDescription);
 
   return menu;
-  //$('#fullMenu').prepend(menu);
 }
 
 function renderMenu(items) {
@@ -51,6 +50,7 @@ function createOrder(data){
   let phone = data.phone_number;
   let date = data.order_date;
   let prep = data.estimated_time;
+  let id = data.id;
 
   let items = '';
   for (let item in itemsArray){
@@ -59,13 +59,12 @@ function createOrder(data){
 
   let orderPhone = $("<span>").addClass("orderPhone").text("(" + phone + ")");
   let orderFor = $("<h1>").addClass("orderName").text(name).append(orderPhone);
-  let orderDate = $("<p>").addClass("orderDate").text(date);
+  let orderId = $("<span>").addClass("orderId").text(id);
+  let orderDate = $("<p>").addClass("orderDate").text("Date: " + date.slice(0, 10) + ", Order ID: ").append(orderId);
   let orderList = $("<span>").attr("id", "orderList");
   let orderTimer = $("<span>").addClass("orderTimer").text("");
-  let orderConfirm = $("<input>").attr("type", "submit").attr("value", "Complete").addClass("complete")
-  let orderConfirmInput = $("<input>").attr("type", "hidden").attr("value", "complete").attr("name", "status");
-  let form = $("<form>").append(orderConfirmInput, orderConfirm);
-  let order = $("<div>").attr("id", "allOrders").addClass("allOrders").append(orderFor, orderDate, orderTimer, orderList, form);
+  let ordercomplete = $ ("<button>").addClass("complete").text("complete");
+  let order = $("<div>").attr("id", "allOrders").addClass("allOrders").append(orderFor, orderDate, orderTimer, orderList, ordercomplete);
 
     let prepMilli = prep * 60 * 1000;
     let countDownDate = new Date(date).getTime() + prepMilli;
@@ -116,9 +115,7 @@ function renderOrderItems(data){
    let orderList = $("<ul>").addClass("orderList").html(items);
 
   let itemId = "#" + data[0].id;
-  //console.log(data[0].id);
   $(itemId).append(orderList);
-  //$("#allOrders").prepend(orderList);
 }
 //try replacing the id???? look online if function
 function renderOrder(items) {

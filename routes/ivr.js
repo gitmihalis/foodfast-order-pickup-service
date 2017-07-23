@@ -12,11 +12,13 @@ const OrderItems = require('../lib/order_items')(knex);
 
 router.post('/greeting/:order_id', (req, res) => {
 		// retrieve the order from database
-
-	Order.find_by_id(req.params.order_id)
-		.then( order => {
-			console.log('find by order, returned: ', order)
-			res.send(twilioHelper.orderNotification(order));
+	const id = req.params.order_id;
+	const order = Order.find_by_id(id);
+	const orderItems = OrderItems.find_by_id(id);
+	Promise.all([order, orderItems])
+		.then( result => {
+			console.log('find by order, returned: ', result )
+			res.send(twilioHelper.orderNotification(result));
 		})
 		.catch( () => res.status(404).json({msg: 'order not found'}))
 })
@@ -35,10 +37,9 @@ router.post('/notify/:order_id', (req, res) => {
     	status: 'preparing',
     	estimated_time: digit
     }).then( () => {
-    	res.status(200).send(twilioHelper.goodbyeWithOrder(id))	
+    	res.status(200).send(twilioHelper.goodbyeWithOrder(digit, id))	
     }).catch((err) => {
     	console.log('[^ Error updating order ',err)
-    	res.redirect('/');
     })
 })
 

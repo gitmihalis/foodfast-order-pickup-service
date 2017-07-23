@@ -1,7 +1,10 @@
+const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const VoiceResponse = require('twilio').twiml.VoiceResponse;
 
-exports.orderNotification = function orderNotification(order) {
+exports.orderNotification = function orderNotification(orderArr) {
   const voiceResponse = new VoiceResponse();
+  const order = orderArr[0];
+  const items = orderArr[1] || 'none' ;
   const gather = voiceResponse.gather({
     action: '/ivr/gather/' + order.id,
     numDigits: '1',
@@ -9,7 +12,10 @@ exports.orderNotification = function orderNotification(order) {
   });
 
   gather.say(`Order ${order.id} from ${order.phone_number}`);
-  // TODO :: gather.say(`Order of ${order.items}`);
+  // items.forEach( (item, index => {
+  //   gather.say(item.name);
+  //   gather.say(item.quantity);
+  // })
   gather.say("Press 1 to confirm");
   gather.say("To dismiss, press 2 or hangup now.")
   // redirectNewOrder();
@@ -56,7 +62,15 @@ function getEstimatedTime(id) {
   return voiceResponse.toString();
 }
 
-exports.goodbyeWithOrder = function (order) {
+exports.goodbyeWithOrder = function (minutes, id) {
+  client.messages.create({
+    body: `Food Bagz is perparing your order. We'll alert you when it's ready! ...(${minutes} minutes)`,
+    to: process.env.TEST_NUMBER,
+    from: process.env.TWILIO_NUMBER,
+  })
+  .then((msg) => msg.sid)
+  .catch((err) => console.log(err));
+
   const voiceResponse = new VoiceResponse();
   voiceResponse.say('Thanks, remember to let us know when the order is ready.');
   voiceResponse.hangup();
@@ -64,6 +78,13 @@ exports.goodbyeWithOrder = function (order) {
   return voiceResponse.toString();
 }
 
+function apologize() {
+  const voiceResponse = new VoiceResponse();
+  voiceResponse.say('Sorry, something went wrong.')
+  voiceResponse.say('Check on this order in your food fast app');
+  voiceResponse.hangup();
+  return voiceResponse.toString();
+}
 
 
 

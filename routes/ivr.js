@@ -27,7 +27,8 @@ router.post('/gather/:order_id', (req, res) => {
 	const orderStatus = req.body.Digits;
 	const orderID = req.params.order_id;
 	if (orderStatus == 2) {
-		Order.delete_order(orderID);
+		// If order status is 2 order is rejected, update status
+		Order.update_order(orderID, ['status'], ['rejected']);
 		res.send( twilioHelper.dismissOrder(orderID))
 	} else {
 	  res.send( twilioHelper.getEstimatedTime(orderID));

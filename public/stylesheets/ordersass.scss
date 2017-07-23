@@ -36,7 +36,7 @@ h1 {
   text-align: center;
   width: 100%;
 }
-#allOrders{
+.allOrders{
   padding: 20px;
   border: solid 3px $middleGrey;
   width: 90%;
@@ -45,7 +45,6 @@ h1 {
   margin: auto;
   border-radius: 15px;
   background-color: $lightGrey;
-  text-align: center;
   margin-bottom: 20px;
   h1{
     font-family: $font-title;

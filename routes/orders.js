@@ -40,5 +40,11 @@ router.get('/sms', (req, res) => {
 	}).catch((err) => console.log(err));
 })
 
+router.get("/orders", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("manager");
+});
+
 
 module.exports = router;

@@ -57,7 +57,7 @@ function getEstimatedTime(id) {
   finishOnKey: '#'
   });
 
-  gather.say('About how many minutes until that order ready?');
+  gather.say('About how many minutes until that order is ready?');
 
   return voiceResponse.toString();
 }

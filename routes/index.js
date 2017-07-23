@@ -102,8 +102,13 @@ router.post('/complete', function(req, res){
 
 router.get("/users/manager", (req, res) => {
   //let templateVars = { user: users[req.session.user_id] };
-  res.status(200);
-  res.render("manager");
+  if (req.session.user_id) {
+    res.status(200);
+    res.render("manager")
+  } else {
+    res.redirect("/users/login");
+  }
+  return;
 });
 
 router.get("/users/add", (req, res) => {

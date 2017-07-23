@@ -59,13 +59,23 @@ router.post('/logout', (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.status(200);
-  res.render("login");
+  if (req.session.user_id) {
+    res.status(200);
+    res.redirect("/users/manager")
+  } else {
+    res.render("login");
+  }
+  return;
 });
 
 router.get("/register", (req, res) => {
-  res.status(200);
-  res.render("register");
+  if (req.session.user_id) {
+    res.status(200);
+    res.redirect("/users/manager")
+  } else {
+    res.render("register");
+  }
+  return;
 });
 
 

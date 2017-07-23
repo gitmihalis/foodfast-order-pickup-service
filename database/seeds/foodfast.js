@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
       knex('orders')
         .del()
-        .then(function() {return knex.raw('ALTER SEQUENCE orders_id_seq RESTART WITH 1')}) //+++++++++
+        .then(function() {return knex.raw('ALTER SEQUENCE orders_id_seq RESTART WITH 1')})
         .then(function () {
           return knex('orders').insert([
             {cost: 18, status: 'pending', phone_number: 14164527777, estimated_time: 5, name: "John Doe"},
@@ -25,7 +25,7 @@ exports.seed = function(knex, Promise) {
         }),
       knex('items')
         .del()
-        .then(function() {return knex.raw('ALTER SEQUENCE items_id_seq RESTART WITH 1')}) // +++++++++++
+        .then(function() {return knex.raw('ALTER SEQUENCE items_id_seq RESTART WITH 1')})
         .then(function () {
           return knex('items').insert([
             {quantity: 100, name: 'Eduardo Burger', description: 'A juicy sirloin burger on a sesame bun topped with: cheddar cheese, bacon, lettuce, tomato, and caramelized onions.', item_price: 9, picture_file: '/images/Burger.jpg'},

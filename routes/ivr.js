@@ -14,7 +14,7 @@ router.post('/greeting/:order_id', (req, res) => {
 		// retrieve the order from database
 	const id = req.params.order_id;
 	const order = Order.find_by_id(id);
-	const orderItems = OrderItems.find_by_id(id);
+	const orderItems = OrderItems.find_by_order_id(id);
 	Promise.all([order, orderItems])
 		.then( result => {
 			console.log('find by order, returned: ', result )

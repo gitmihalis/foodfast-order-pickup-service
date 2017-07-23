@@ -12,29 +12,20 @@ router.get('/', (req, res) => {
 
 /* POST Place a new order to be confirmed by the client */
 router.post('/', (req, res) => {
-	// Build the order object
-	const newOrder = { 
-		    name: req.body.customerName,
-        cost: req.body.cost,
-        status: 'pending',
-        phone_number: req.body.customerPhone,
-        estimated_time: null,
-	};
-
-	Order.create_order(newOrder)
+	// `create_order` params: (name, cost, status, phone_number, estimated_time)
+	Order.create_order( req.body.customerName, req.body.cost, req.body.status, req.body.phone_number, req.body.estimated_time)
 		.then( id => {
-		// TODO - make phone call to client
 		  console.log('[^ order # ' + id + ' created ]');
 			client.calls.create({
 		  	url: 'https://foodfast.fwd.wf/ivr/greeting/' + id ,
 		  	to: process.env.TEST_NUMBER,
 		  	from: process.env.TWILIO_NUMBER,
 			})
-			.catch( (err) => {
-				res.status(500).json({error: 'Order was not saved'});
-			})
+			res.status(201).json({message: 'Order created!'});
+		}).catch( (err) => {
+			res.status(500).json({error: 'Order was not saved'});
 		})
-});
+	});
 
 router.get('/sms', (req, res) => {
 	const estimate_time = req.query.time;
@@ -44,19 +35,6 @@ router.get('/sms', (req, res) => {
 	  from: process.env.TWILIO_NUMBER,
 	}).then((msg) => {
 		res.status('200').send(msg.sid);
-	}).catch((err) => console.log(err));
-})
-
-router.post('/pickup', (req, res) => {
-	// authenticate user... 
-	client.messages.create({
-	  body: '🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
-	}).then((msg) => {
-		process.stdout.write(msg.sid);
-		res.status(200).json({});
-		// res.status('201').send(call);
 	}).catch((err) => console.log(err));
 })
 

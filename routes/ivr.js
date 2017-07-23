@@ -24,9 +24,14 @@ router.post('/greeting/:order_id', (req, res) => {
 })
 
 router.post('/gather/:order_id', (req, res) => {
-	const digit = req.body.Digits;
+	const orderStatus = req.body.Digits;
 	const orderID = req.params.order_id;
-  res.send(twilioHelper.respondToConfirmation(digit, orderID));
+	if (orderStatus == 2) {
+		Order.delete_order(orderID);
+		res.send( twilioHelper.dismissOrder(orderID))
+	} else {
+	  res.send( twilioHelper.getEstimatedTime(orderID));
+	}
 })
 
 router.post('/notify/:order_id', (req, res) => {
@@ -42,6 +47,7 @@ router.post('/notify/:order_id', (req, res) => {
     	console.log('[^ Error updating order ',err)
     })
 })
+
 
 
 module.exports = router;

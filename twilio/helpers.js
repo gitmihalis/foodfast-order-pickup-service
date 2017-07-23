@@ -23,7 +23,7 @@ exports.orderNotification = function orderNotification(orderArr) {
 };
 
 // Parses the client input to take the next step
-exports.respondToConfirmation = function menu(digit, id) {
+exports.respondToConfirmation = function (digit, id) {
   const orderID = id;
   const optionActions = {
     '1': getEstimatedTime,
@@ -31,24 +31,22 @@ exports.respondToConfirmation = function menu(digit, id) {
   };
   return (optionActions[digit])
     ? optionActions[digit](orderID)
-    : loopOrder(id);
+    : apologize(id);
 }
 
 // There functions are used when responding to confirmation
 // 1. Dismiss the Order and end the call
-function dismissOrder(id) {
+exports.dismissOrder = function(id) {
   const voiceResponse = new VoiceResponse();
   // TODO :: Delete order from database!
   voiceResponse.say(`Order ${id} dismissed.`);
   voiceResponse.say('Bye bye Food Bagz');
-
   voiceResponse.hangup();
-
   return voiceResponse.toString();
 }
 
 // 2. Accept the order and gather the prep time
-function getEstimatedTime(id) {
+exports.getEstimatedTime = function(id) {
   const voiceResponse = new VoiceResponse();
   const gather = voiceResponse.gather({
   action: '/ivr/notify/' + id,
@@ -56,7 +54,6 @@ function getEstimatedTime(id) {
   method: 'POST',
   finishOnKey: '#'
   });
-
   gather.say('About how many minutes until that order is ready?');
 
   return voiceResponse.toString();
@@ -68,7 +65,7 @@ exports.goodbyeWithOrder = function (minutes, id) {
     to: process.env.TEST_NUMBER,
     from: process.env.TWILIO_NUMBER,
   })
-  .then((msg) => msg.sid)
+  .then((msg) => console.log(msg.sid))
   .catch((err) => console.log(err));
 
   const voiceResponse = new VoiceResponse();
@@ -78,6 +75,7 @@ exports.goodbyeWithOrder = function (minutes, id) {
   return voiceResponse.toString();
 }
 
+// 4. Communicate error to client
 function apologize() {
   const voiceResponse = new VoiceResponse();
   voiceResponse.say('Sorry, something went wrong.')
@@ -85,7 +83,6 @@ function apologize() {
   voiceResponse.hangup();
   return voiceResponse.toString();
 }
-
 
 
 // 3. Restart the order confirmations logic

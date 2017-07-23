@@ -5,6 +5,11 @@ const settings = require("../database/settings");
 const knex = require('knex') (require('../database/knexfile').development);
 const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
+const Order = require('../lib/order')(knex);
+const OrderItems = require('../lib/order_items')(knex);
+
+const fs = require("fs");
+const request = require("request");
 
 //const knex = require('knex') (require('../database/knexfile').development);
 
@@ -33,6 +38,25 @@ router.get('/testtwo', function(req, res, next){
   });
 });
 
+router.get('/testthree', function(req, res, next){
+  Order.find_by_status('pending')
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
+router.get('/testfour', function(req, res, next){
+  OrderItems.find_by_order_id(parseInt(req.query.id))
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
 
 router.post('/test', function(req, res){
   if (!req.body['quantities[]'][1]){
@@ -52,15 +76,40 @@ router.post('/test', function(req, res){
   console.log(payMethod, customer, phone);
 });
 
+router.post('/add', function(req, res){
+  res.status(200);
+  let name = req.body.name;
+  let description = req.body.description;
+  let item_price = parseFloat(req.body.price);
+  let discount = null;
+  let picture_file = req.body.url;
+  let quantity = 10;
+  Item.create_item(name, description, item_price, discount, picture_file, quantity)
+  .then(() => {
+    console.log("done");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  res.redirect("/");
+});
+
+
 router.post('/complete', function(req, res){
   let status = req.body.status;
   console.log(status);
 });
-// NOTES: We already have an orders endpoint @ `/orders`
-router.get("/manager", (req, res) => {
+
+router.get("/users/manager", (req, res) => {
   //let templateVars = { user: users[req.session.user_id] };
   res.status(200);
   res.render("manager");
+});
+
+router.get("/users/add", (req, res) => {
+  //let templateVars = { user: users[req.session.user_id] };
+  res.status(200);
+  res.render("add");
 });
 
 

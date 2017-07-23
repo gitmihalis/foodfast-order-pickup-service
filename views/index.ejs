@@ -102,7 +102,7 @@
       event.preventDefault(); //Place order asynch.
         $.ajax({
             method: 'POST',
-            url: '/orders',
+            url: '/test',
             data: $(this).serialize()
           }).done(function () {
             console.log('done');

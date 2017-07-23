@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+  </head>
+  <body>
+    <header>
+      <% include partials/_header %>
+    </header>
+    <form method="POST" action="/add" id = "menuform">
+        Menu Item:<br>
+        <input type="text" name="name"><br>
+        Price:<br>
+        <input type="number" name="price" step="0.25" min = "0"><br>
+        Photo URL:<br>
+        <input type="text" name="url"><br>
+        Description:<br>
+        <textarea name="description" rows="4" cols="50" form="menuform"></textarea></br>
+      <input type="submit" value="Add Item">
+    </form>
+  </body>
+</html>

@@ -28,7 +28,7 @@ h1 {
   text-align: center;
   width: 100%; }
 
-#allOrders {
+.allOrders {
   padding: 20px;
   border: solid 3px #a7a7a7;
   width: 90%;
@@ -37,24 +37,24 @@ h1 {
   margin: auto;
   border-radius: 15px;
   background-color: #ebebeb;
-  text-align: center; }
-  #allOrders h1 {
+  margin-bottom: 20px; }
+  .allOrders h1 {
     font-family: Helvetica;
     text-transform: none;
     color: #585858;
     margin: 0;
     text-align: left; }
-  #allOrders .orderPhone {
+  .allOrders .orderPhone {
     font-size: 0.5em; }
-  #allOrders .orderDate {
+  .allOrders .orderDate {
     font-size: 0.8em;
     color: #00a085;
     text-align: left; }
-  #allOrders .orderTimer {
+  .allOrders .orderTimer {
     float: right;
     font-size: 3em;
     color: #ff7109; }
-  #allOrders .complete {
+  .allOrders .complete {
     background-color: transparent;
     border: solid 3px #00a085;
     border-radius: 5px;
@@ -62,10 +62,10 @@ h1 {
     font-size: 1.2em;
     text-transform: uppercase;
     color: #00a085; }
-    #allOrders .complete:hover {
+    .allOrders .complete:hover {
       background-color: #00a085;
       color: white; }
-  #allOrders ul {
+  .allOrders ul {
     text-align: left;
     font-size: 0.9em;
     padding: 0 0 0 20px;

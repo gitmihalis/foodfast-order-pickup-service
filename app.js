@@ -5,12 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
-
 //const knex = require('knex') (require('./database/knexfile').development);
 
 //const Item = require('./lib/item')(knex);
 //const Table = require('./lib/table')(knex);
-
 var index = require('./routes/index');
 var orders = require('./routes/orders');
 var ivr = require('./routes/ivr');

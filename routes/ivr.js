@@ -1,57 +1,53 @@
 
 const express = require('express');
 const router = express.Router();
+// Twilio =========================
 const twilioHelper = require('../twilio/helpers');
+// DATABASE ======================
+const settings = require("../database/settings");
+const knex = require('knex') (require('../database/knexfile').development);
+const Order = require('../lib/order')(knex);
+const OrderItems = require('../lib/order_items')(knex);
+// ROUTES ===============
 
-
-
-router.post('/accept', (req, res) => {
-	console.log('[/accept]:: ', req.body.Digits)
-	// database helper ==> saves order to databse
-	res.send(twilioHelper.helloWithOrder());
+router.post('/greeting/:order_id', (req, res) => {
+		// retrieve the order from database
+	const id = req.params.order_id;
+	const order = Order.find_by_id(id);
+	const orderItems = OrderItems.find_by_order_id(id);
+	Promise.all([order, orderItems])
+		.then( result => {
+			console.log('find by order, returned: ', result )
+			res.send(twilioHelper.orderNotification(result));
+		})
+		.catch( () => res.status(404).json({msg: 'order not found'}))
 })
 
-router.post('/gather', (req, res) => {
+router.post('/gather/:order_id', (req, res) => {
+	const orderStatus = req.body.Digits;
+	const orderID = req.params.order_id;
+	if (orderStatus == 2) {
+		Order.delete_order(orderID);
+		res.send( twilioHelper.dismissOrder(orderID))
+	} else {
+	  res.send( twilioHelper.getEstimatedTime(orderID));
+	}
+})
+
+router.post('/notify/:order_id', (req, res) => {
 	const digit = req.body.Digits;
-	
-	console.log('[/gather](confirmation):: ', digit);
-  res.send(twilioHelper.respondToConfirmation(digit));
+	const id = req.params.order_id;
+	knex('orders').where({id: id})
+    .update({
+    	status: 'preparing',
+    	estimated_time: digit
+    }).then( () => {
+    	res.status(200).send(twilioHelper.goodbyeWithOrder(digit, id))	
+    }).catch((err) => {
+    	console.log('[^ Error updating order ',err)
+    })
 })
 
-router.post('/notify', (req, res) => {
-	const digit = req.body.Digits;
-	console.log('[/notify]:: ', req.body.Digits)
-	// database helper ==> sets prep time
-	res.send(twilioHelper.goodbyeWithOrder(digit));
-})
-
-// GET `/voice` 
-// router.post('/voice', (req, res) => {
-	// if ( !req.params.Digits ) {
-	// 	client.calls.create({
-	//   url: 'https://foodfast.fwd.wf/ivr/accept',
-	//   to: process.env.TEST_NUMBER,
-	//   from: process.env.TWILIO_NUMBER,
-	// 	}).then((call) => {
-	// 		process.stdout.write(call.sid);
-	// 		res.status(200).send();
-	// 	}).catch((err) => console.log(err));
-	// } else {
-	// 	res.redirect('/orders');
-	// }
-// }
-
-router.post('/sms', (req, res) => {
-	client.messages.create({
-	  body: ' 🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
-		}).then((msg) => {
-			process.stdout.write(msg.sid);
-			res.status(200).send();
-			// res.status('201').send(call);
-		}).catch((err) => console.log(err));
-});
 
 
 module.exports = router;

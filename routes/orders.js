@@ -56,9 +56,9 @@ router.post('/', (req, res) => {
 		})
 });
 
-router.update('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 	// if user is user 
-	Order.update_order([req.params.id], ['status'], ['completed'])
+	Order.update_order(req.params.id, ['status'], ['completed'])
 		.then( (result) => res.status(200).json({"result": result}))
 		.catch( (err) => res.status(500).json({"error": "edit resource failed"}));
 });

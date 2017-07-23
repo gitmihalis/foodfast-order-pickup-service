@@ -9,6 +9,9 @@
   <body>
     <header>
       <% include partials/_header %>
+    <form method="POST" action="/users/logout">
+      <input type="submit" value="Logout">
+    </form>
     </header>
 
     <h1> Manage Orders </h1>
@@ -43,7 +46,7 @@
       let orderTimer = $("<span>").addClass("orderTimer").text("");
       let orderConfirm = $("<input>").attr("type", "submit").attr("value", "Complete").addClass("complete")
       let orderConfirmInput = $("<input>").attr("type", "hidden").attr("value", "complete").attr("name", "status");
-      let form = $("<form>").append(orderConfirmInput, orderConfirm);
+      let form = $("<form>").attr("id", "completed").append(orderConfirmInput, orderConfirm);
       let order = $("<div>").append(orderFor, orderDate, orderTimer, orderList, form);
 
     //-----------------TIMER------------------
@@ -79,7 +82,7 @@
       $("#allOrders").prepend(order);
 
     //-------------COMPLETE ORDER -------------
-      $('form').on('submit', function (event) {
+      $('#completed').on('submit', function (event) {
         event.preventDefault(); //Place order asynch.
           $.ajax({
               method: 'POST',

@@ -99,13 +99,8 @@ router.post('/complete', function(req, res){
   let status = req.body.status;
   console.log(status);
 });
-<<<<<<< HEAD
 
 router.get("/users/manager", (req, res) => {
-=======
-// NOTES: We already have an orders endpoint @ `/orders`
-router.get("/manager", (req, res) => {
->>>>>>> f8017eef1ae62b9516d941f52982b08f48f70638
   //let templateVars = { user: users[req.session.user_id] };
   res.status(200);
   res.render("manager");

@@ -7,6 +7,7 @@ const Order = require('../lib/order')(knex);
 
 /* GET menu */
 router.get('/', (req, res) => {
+	// find all orders in database and list
   res.render('menu', { title: 'Place your order' });
 });
 
@@ -25,7 +26,7 @@ router.post('/', (req, res) => {
 		}).catch( (err) => {
 			res.status(500).json({error: 'Order was not saved'});
 		})
-	});
+});
 
 router.get('/sms', (req, res) => {
 	const estimate_time = req.query.time;
@@ -37,24 +38,6 @@ router.get('/sms', (req, res) => {
 		res.status('200').send(msg.sid);
 	}).catch((err) => console.log(err));
 })
-
-router.post('/', (req, res) => {
-	client.messages.create({
-	  body: ' 🤡 Your Order @ Food-Bagz is ready for pickp 🍩',
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
-	}).then((msg) => {
-		process.stdout.write(msg.sid);
-		res.status(200).send();
-		// res.status('201').send(call);
-	}).catch((err) => console.log(err));
-});
-
-/* GET show an order . */
-router.get('/:id', function(req, res) {
-	const order = {}
-  res.render('menu', {order});
-});
 
 
 module.exports = router;

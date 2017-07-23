@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+  </head>
+  <style>
+    .button {
+      font-size: 3em;
+      box-shadow: 0 0 10px #aaa;
+      border-radius: 2%;
+    }
+    .button.big {
+      padding: 10px 20px;
+      margin: 1em;
+      color: white;
+    }
+    #customer {
+      background: #af34da;
+    }
+    #manager {
+      background: orange;
+    }
+
+  </style>
+  <body>
+    <header>
+      <% include partials/_header %>
+    </header>
+
+    <div class="welcome">
+      <h2>Welcome to foodfast!</h2>
+      <a class="button big" id="customer" href="/">order Now</a>
+      <a class="button big" id="manager" href="/orders">Manage</a>
+    </div>
+
+  </body>
+</html>

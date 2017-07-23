@@ -77,8 +77,8 @@
         let id = $(this).parent().find(".orderId").text();
         event.preventDefault(); //Place order asynch.
           $.ajax({
-              method: 'POST',
-              url: '/orders/:' + id,
+              method: 'PUT',
+              url: '/orders/' + id,
               data: {"id": id}
             }).done(function () {
               console.log('done');

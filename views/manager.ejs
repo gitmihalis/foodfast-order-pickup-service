@@ -40,16 +40,6 @@
       for (let item in itemsArray){
         items += `<li>${itemsArray[item]} (${quantityArray[item]})</li>`;
       }
-    // ----------------SET HTML -------------
-      let orderPhone = $("<span>").addClass("orderPhone").text(phone);
-      let orderFor = $("<h1>").addClass("orderName").text(name).append(orderPhone);
-      let orderDate = $("<p>").addClass("orderDate").text(date);
-      let orderList = $("<ul>").addClass("orderList").html(items);
-      let orderTimer = $("<span>").addClass("orderTimer").text("");
-      let orderConfirm = $("<input>").attr("type", "submit").attr("value", "Complete").addClass("complete")
-      let orderConfirmInput = $("<input>").attr("type", "hidden").attr("value", "complete").attr("name", "status");
-      let form = $("<form>").attr("id", "completed").append(orderConfirmInput, orderConfirm);
-      let order = $("<div>").append(orderFor, orderDate, orderTimer, orderList, form);
 
     //-----------------TIMER------------------
 
@@ -81,20 +71,19 @@
     // ----------------ON PAGE LOAD-------------------
     $(document).ready(function(){
       loadOrders();
-      //$("#allOrders").prepend(order);
 
     //-------------COMPLETE ORDER -------------
-      $('#completed').on('submit', function (event) {
+      $('div').on('click', 'button', function (event) {
+        let id = $(this).parent().find(".orderId").text();
         event.preventDefault(); //Place order asynch.
           $.ajax({
               method: 'POST',
-              url: '/complete',
-              data: $(this).serialize()
+              url: '/orders/:' + id,
+              data: {"id": id}
             }).done(function () {
               console.log('done');
           });
-          $(this).trigger("reset");
-          $(this).parent().parent().remove();
+          $(this).parent().remove();
       });
     });
 

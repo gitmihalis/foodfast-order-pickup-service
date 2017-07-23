@@ -19,8 +19,12 @@ const request = require("request");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Foodfast' });
 });
+
+router.get('/welcome', function(req, res) {
+  res.render('welcome', {title: 'welcome'});
+})
 
 router.get('/testtwo', function(req, res, next){
   Table.find_all('items')
@@ -83,8 +87,13 @@ router.post('/complete', function(req, res){
   let status = req.body.status;
   console.log(status);
 });
+<<<<<<< HEAD
 
 router.get("/users/manager", (req, res) => {
+=======
+// NOTES: We already have an orders endpoint @ `/orders`
+router.get("/manager", (req, res) => {
+>>>>>>> f8017eef1ae62b9516d941f52982b08f48f70638
   //let templateVars = { user: users[req.session.user_id] };
   res.status(200);
   res.render("manager");

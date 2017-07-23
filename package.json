@@ -10,11 +10,16 @@
     "body-parser": "^1.17.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.2",
     "debug": "^2.6.8",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
+<<<<<<< HEAD
     "fs": "0.0.1-security",
+=======
+    "express-basic-auth": "^1.1.1",
+>>>>>>> f8017eef1ae62b9516d941f52982b08f48f70638
     "knex": "^0.13.0",
     "morgan": "^1.8.2",
     "pg": "^7.0.2",

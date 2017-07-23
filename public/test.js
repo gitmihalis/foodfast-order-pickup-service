@@ -116,7 +116,7 @@ function renderOrderItems(data){
    let orderList = $("<ul>").addClass("orderList").html(items);
 
   let itemId = "#" + data[0].id;
-  console.log(data[0].id);
+  //console.log(data[0].id);
   $(itemId).append(orderList);
   //$("#allOrders").prepend(orderList);
 }

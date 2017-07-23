@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('orderitems')
     .del()
+    .then(function() {return knex.raw('ALTER SEQUENCE orderitems_id_seq RESTART WITH 1')})
     .then(function () {
       return Promise.all([
       knex('orders')
@@ -36,16 +37,16 @@ exports.seed = function(knex, Promise) {
             return knex('orderitems')
               .then(function () {
                 return knex('orderitems').insert([
-                  {id: 1, order_id: 1, item_id:1, quantity: 2, paid_each: 9},
-                  {id: 2, order_id: 2, item_id:1, quantity: 2, paid_each: 7.5},
-                  {id: 3, order_id: 2, item_id:4, quantity: 2, paid_each: 6},
-                  {id: 4, order_id: 3, item_id:3, quantity: 5, paid_each: 6.5},
-                  {id: 5, order_id: 4, item_id:4, quantity: 1, paid_each: 6},
-                  {id: 6, order_id: 4, item_id:2, quantity: 1, paid_each: 7.5},
-                  {id: 7, order_id: 4, item_id:3, quantity: 1, paid_each: 6.5},
-                  {id: 8, order_id: 5, item_id:4, quantity: 3, paid_each: 6},
-                  {id: 9, order_id: 5, item_id:3, quantity: 3, paid_each: 6.5},
-                  {id: 10, order_id: 5, item_id:1, quantity: 3, paid_each: 9}
+                  {order_id: 1, item_id:1, quantity: 2, paid_each: 9},
+                  {order_id: 2, item_id:1, quantity: 2, paid_each: 7.5},
+                  {order_id: 2, item_id:4, quantity: 2, paid_each: 6},
+                  {order_id: 3, item_id:3, quantity: 5, paid_each: 6.5},
+                  {order_id: 4, item_id:4, quantity: 1, paid_each: 6},
+                  {order_id: 4, item_id:2, quantity: 1, paid_each: 7.5},
+                  {order_id: 4, item_id:3, quantity: 1, paid_each: 6.5},
+                  {order_id: 5, item_id:4, quantity: 3, paid_each: 6},
+                  {order_id: 5, item_id:3, quantity: 3, paid_each: 6.5},
+                  { order_id: 5, item_id:1, quantity: 3, paid_each: 9}
                 ]);
               })
           });

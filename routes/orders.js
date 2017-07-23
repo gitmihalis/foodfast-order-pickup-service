@@ -4,10 +4,18 @@ const router = express.Router();
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const knex = require('knex') (require('../database/knexfile').development);
 const Order = require('../lib/order')(knex);
+const basicAuth = require('express-basic-auth');
 
-/* GET menu */
-router.get('/', (req, res) => {
-  //let templateVars = { user: users[req.session.user_id] };
+const staticUserAuth = basicAuth({
+    users: {
+        'Admin': 'secret1234'
+    },
+    challenge: true
+})
+
+// -------- ROUTES ------------
+router.get('/', staticUserAuth, (req, res) => {
+
   res.status(200);
   res.render("manager", {title: 'Orders list'});
 });

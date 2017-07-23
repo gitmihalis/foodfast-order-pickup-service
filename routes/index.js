@@ -6,6 +6,8 @@ const knex = require('knex') (require('../database/knexfile').development);
 const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
 const Order = require('../lib/order')(knex);
+const OrderItems = require('../lib/orderitems')(knex);
+
 const fs = require("fs");
 const request = require("request");
 
@@ -46,6 +48,15 @@ router.get('/testthree', function(req, res, next){
   });
 });
 
+router.get('/testfour', function(req, res, next){
+  OrderItems.find_by_id(parseInt(req.query.id))
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
 
 router.post('/test', function(req, res){
   if (!req.body['quantities[]'][1]){
@@ -82,6 +93,7 @@ router.post('/add', function(req, res){
   });
   res.redirect("/");
 });
+
 
 router.post('/complete', function(req, res){
   let status = req.body.status;

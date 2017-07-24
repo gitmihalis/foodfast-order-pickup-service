@@ -26,6 +26,7 @@ router.get('/welcome', (req, res) =>  {
   res.render('welcome', {title: 'welcome'});
 })
 
+/* GET menu items from database. */
 router.get('/load', (req, res) => {
   Table.find_all('items')
   .then((table) => {
@@ -38,7 +39,8 @@ router.get('/load', (req, res) => {
   });
 });
 
-router.get('/loadOrders', function(req, res, next){
+// load orders from database
+router.get('/loadOrders', (req, res, next) => {
   Order.find_by_status('pending')
   .then((table) => {
     res.status(200);
@@ -50,7 +52,8 @@ router.get('/loadOrders', function(req, res, next){
   });
 });
 
-router.get('/loadItems', function(req, res, next){
+// load order items from database
+router.get('/loadItems', (req, res, next) => {
   OrderItems.find_by_order_id(parseInt(req.query.id))
   .then((table) => {
     res.status(200);
@@ -62,8 +65,7 @@ router.get('/loadItems', function(req, res, next){
   });
 });
 
-
-
+// Add new menu item
 router.post('/add', (req, res) => {
   res.status(200);
   let name = req.body.name;

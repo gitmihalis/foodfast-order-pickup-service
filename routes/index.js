@@ -100,6 +100,21 @@ router.post('/complete', function(req, res){
   console.log(status);
 });
 
+router.get('/users/inventory', (req, res) => {
+  res.status(200);
+  res.render('inventory');
+})
+
+router.get('/inventory_items', function(req, res){
+  Table.find_all('items')
+  .then((table) => {
+    res.json(table);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+});
+
 router.get("/users/manager", (req, res) => {
   //let templateVars = { user: users[req.session.user_id] };
   if (req.session.user_id) {

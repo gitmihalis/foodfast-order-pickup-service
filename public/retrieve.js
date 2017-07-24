@@ -4,14 +4,12 @@ function createMenu(data){
   let photo = data.picture_file;
   let price = data.item_price;
   let description = data.description;
-
   let menuPhoto = $("<img>").addClass("menuPhoto").attr('src', photo);
   let menuName = $("<span>").addClass("menuName").text(name);
   let menuButton = $("<span>").addClass("addButton");
   let menuPrice = $("<p>").addClass("menuPrice").text('$' + price);
   let menuDescription = $("<p>").addClass("menuDescription").text(description);
   let menu = $("<div>").addClass("menuItem").append(menuPhoto, menuName, menuButton, menuPrice, menuDescription);
-
   return menu;
 }
 
@@ -53,7 +51,7 @@ function createOrder(data){
   let id = data.id;
 
   //Variables for the counter
-  let prepMilli = Number(prep) * 60 * 1000;
+  let prepMilli = prep * 60 * 1000;
   let countDownDate = new Date(date).getTime() + prepMilli;
   let now = new Date().getTime();
   let distance = countDownDate - now;
@@ -77,7 +75,6 @@ function createOrder(data){
       // Time calculations for minutes and seconds
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       //Pad the displayed number with zeros
       function pad(d) {
         return (d < 10) ? '0' + d.toString() : d.toString();
@@ -133,4 +130,3 @@ function renderOrder(items) {
     loadItems(items[item].id);
   }
 }
-

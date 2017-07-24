@@ -7,7 +7,6 @@ const Item = require('../lib/item')(knex);
 const Table = require('../lib/table')(knex);
 const Order = require('../lib/order')(knex);
 const OrderItems = require('../lib/order_items')(knex);
-
 const fs = require("fs");
 const request = require("request");
 
@@ -15,22 +14,26 @@ const request = require("request");
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) =>  {
+  res.status(200);
   res.render('index', { title: 'Foodfast' });
 });
 
+
 /* GET welcome page. */
-router.get('/welcome', function(req, res) {
+router.get('/welcome', (req, res) =>  {
+  res.status(200);
   res.render('welcome', {title: 'welcome'});
 })
 
-
-router.get('/load', function(req, res, next){
+router.get('/load', (req, res) => {
   Table.find_all('items')
   .then((table) => {
+    res.status(200);
     res.json(table);
   })
   .catch((err) => {
+    res.status(500);
     console.log(err);
   });
 });
@@ -38,9 +41,11 @@ router.get('/load', function(req, res, next){
 router.get('/loadOrders', function(req, res, next){
   Order.find_by_status('pending')
   .then((table) => {
+    res.status(200);
     res.json(table);
   })
   .catch((err) => {
+    res.status(500);
     console.log(err);
   });
 });
@@ -48,15 +53,18 @@ router.get('/loadOrders', function(req, res, next){
 router.get('/loadItems', function(req, res, next){
   OrderItems.find_by_order_id(parseInt(req.query.id))
   .then((table) => {
+    res.status(200);
     res.json(table);
   })
   .catch((err) => {
+    res.status(500);
     console.log(err);
   });
 });
 
-/* POST add menu item. */
-router.post('/add', function(req, res){
+
+
+router.post('/add', (req, res) => {
   res.status(200);
   let name = req.body.name;
   let description = req.body.description;
@@ -90,6 +98,5 @@ router.get("/users/add", (req, res) => {
   res.status(200);
   res.render("add");
 });
-
 
 module.exports = router;

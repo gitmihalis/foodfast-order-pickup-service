@@ -71,7 +71,7 @@ h1.manage {
     padding: 0 0 0 20px;
     color: #585858; }
 
-#check {
+.orangeButton {
   background-color: transparent;
   color: #ff7109;
   font-size: 1.2em;
@@ -83,13 +83,12 @@ h1.manage {
   text-align: center;
   float: right;
   margin: 0 8% 0 0; }
+  .orangeButtonhover {
+    background-color: #00a085;
+    color: white;
+    border: 2px solid #00a085; }
 
-#check:hover {
-  background-color: #00a085;
-  color: white;
-  border: 2px solid #00a085; }
-
-#logout {
+.topButton {
   background-color: transparent;
   color: #00a085;
   font-size: 1.2em;
@@ -99,13 +98,12 @@ h1.manage {
   padding: 10px 15px;
   vertical-align: middle;
   margin: 20px 20px 0 20px; }
+  .topButton:hover {
+    background-color: #00a085;
+    color: white;
+    border: 2px solid #00a085; }
 
-#logout:hover {
-  background-color: #00a085;
-  color: white;
-  border: 2px solid #00a085; }
-
-#addMenu {
+.navButton {
   background-color: transparent;
   color: #ff7109;
   font-size: 1.2em;
@@ -115,10 +113,36 @@ h1.manage {
   padding: 10px 15px;
   vertical-align: middle;
   margin: 20px 20px 0 20px; }
+  .navButton:hover {
+    background-color: #00a085;
+    color: white;
+    border: 2px solid #00a085; }
 
-#addMenu:hover {
-  background-color: #00a085;
-  color: white;
-  border: 2px solid #00a085; }
+.standard {
+  margin: 30px auto;
+  width: 450px;
+  background-color: #ebebeb;
+  border-radius: 12px;
+  border: 1px solid #585858;
+  padding: 30px; }
+  .standard h1 {
+    text-align: center;
+    margin-top: 0;
+    color: #00a085; }
+
+#submit {
+  background-color: transparent;
+  color: #ff7109;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #ff7109;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px auto; }
+  #submit:hover {
+    background-color: #00a085;
+    color: white;
+    border: 2px solid #00a085; }
 
 /*# sourceMappingURL=order.css.map */

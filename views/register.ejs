@@ -4,25 +4,30 @@
     <title>Welcome</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/order.css' />
     <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
   </head>
   <body>
     <header>
       <% include partials/_header %>
+    <form method="GET" action="/users/login">
+      <input type="submit" value="Login" class = "topButton">
+    </form>
     </header>
 
-    <form method="POST" action="/users/register">
+    <form method="POST" action="/users/register" class = "standard">
+    <h1>Register</h1>
           <p><label for="userPassword">Name</label>
-            <input id="name" type="text" name="name" placeholder="tinyapp@example.com" style="width: 400px"></br>
+            <input id="name" type="text" name="name" style="width: 400px"></br>
           </p>
           <p><label for="userPassword">Email</label>
-            <input id="email" type="email" name="email" placeholder="tinyapp@example.com" style="width: 400px"></br>
+            <input id="email" type="email" name="email" placeholder="hello@foodfast.com" style="width: 400px"></br>
           </p>
           <p><label for="userPassword">Password</label>
             <input id="password" type="password" name="password" placeholder="" style="width: 400px"></br>
           </p>
 
-          <input type="submit" value="Register">
+          <input type="submit" value="Register" id = "submit">
         </form>
 
   </body>

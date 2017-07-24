@@ -4,25 +4,27 @@
     <title>Welcome</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href='/stylesheets/order.css' />
     <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
   </head>
   <body>
     <header>
       <% include partials/_header %>
+    <form method="GET" action="/users/register">
+      <input type="submit" value="Register Now" class = "topButton">
+    </form>
     </header>
 
-    <form method="POST" action="/users/login">
+    <form class = "standard" method="POST" action="/users/login">
+      <h1>Login</h1>
       <p><label for="userPassword">Email</label>
-        <input id="email" type="email" name="email" placeholder="tinyapp@example.com" style="width: 400px"></br>
+        <input id="email" type="email" name="email" placeholder="hello@foodfast.com" style="width: 400px"></br>
       </p>
       <p><label for="userPassword">Password</label>
         <input id="password" type="password" name="password" placeholder="" style="width: 400px"></br>
       </p>
 
-      <input type="submit" value="Login">
-    </form>
-    <form method="GET" action="/users/register">
-      <input type="submit" value="Register Now">
+      <input type="submit" value="Login" id = "submit">
     </form>
 
 

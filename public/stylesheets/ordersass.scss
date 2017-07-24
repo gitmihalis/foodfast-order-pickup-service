@@ -88,7 +88,7 @@ h1.manage {
   }
 }
 
-#check{
+.orangeButton{
   background-color: transparent;
   color: $brandOrange;
   font-size: 1.2em;
@@ -100,14 +100,14 @@ h1.manage {
   text-align: center;
   float: right;
   margin: 0 8% 0 0;
-}
-#check:hover{
-  background-color: $brandGreen;
-  color: white;
-  border: 2px solid $brandGreen;
+  &hover{
+    background-color: $brandGreen;
+    color: white;
+    border: 2px solid $brandGreen;
+  }
 }
 
-#logout{
+.topButton{
   background-color: transparent;
   color: $brandGreen;
   font-size: 1.2em;
@@ -117,14 +117,14 @@ h1.manage {
   padding: 10px 15px;
   vertical-align: middle;
   margin: 20px 20px 0 20px;
-}
-#logout:hover{
-  background-color: $brandGreen;
-  color: white;
-  border: 2px solid $brandGreen;
+  &:hover{
+    background-color: $brandGreen;
+    color: white;
+    border: 2px solid $brandGreen;
+  }
 }
 
-#addMenu{
+.navButton{
   background-color: transparent;
   color: $brandOrange;
   font-size: 1.2em;
@@ -134,10 +134,41 @@ h1.manage {
   padding: 10px 15px;
   vertical-align: middle;
   margin: 20px 20px 0 20px;
+  &:hover{
+    background-color: $brandGreen;
+    color: white;
+    border: 2px solid $brandGreen;
+  }
 }
-#addMenu:hover{
-  background-color: $brandGreen;
-  color: white;
-  border: 2px solid $brandGreen;
+
+.standard {
+  margin: 30px auto;
+  width: 450px;
+  background-color: $lightGrey;
+  border-radius: 12px;
+  border: 1px solid $darkGrey;
+  padding: 30px;
+  h1{
+    text-align: center;
+    margin-top: 0;
+    color: $brandGreen;
+  }
+}
+
+#submit{
+  background-color: transparent;
+  color: $brandOrange;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brandOrange;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px auto;
+  &:hover{
+    background-color: $brandGreen;
+    color: white;
+    border: 2px solid $brandGreen;
+  }
 }
 

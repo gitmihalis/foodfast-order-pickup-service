@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel='stylesheet' href='/stylesheets/order.css' />
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link rel='stylesheet' href="/stylesheets/font-awesome-4.7.0/css/font-awesome.css" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+    <!-- <script type="text/javascript" src="../midterm_project/inventory.js"></script> -->
+  </head>
+  <body>
+    <header>
+      <% include partials/_header %>
+    <form method="POST" action="/users/logout">
+      <input type="submit" value="Logout">
+    </form>
+    </header>
+
+    <h1> Inventory </h1>
+    <div id="inventory">
+
+    </div>
+
+  </body>
+
+   <script>
+
+    // ----------------ON PAGE LOAD-------------------
+    $(document).ready(function(){
+
+      load();
+
+    //-------------COMPLETE ORDER -------------
+      /*$('#completed').on('submit', function (event) {
+        event.preventDefault(); //Place order asynch.
+          $.ajax({
+              method: 'POST',
+              url: '/complete',
+              data: $(this).serialize()
+            }).done(function () {
+              console.log('done');
+          });
+          $(this).trigger("reset");
+          $(this).parent().parent().remove();
+      });*/
+    });
+
+
+    </script>
+</html>
+
+

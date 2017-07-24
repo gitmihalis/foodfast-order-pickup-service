@@ -53,4 +53,38 @@ Ad a user:
 - twilio 3.5.0 or above
 
 ## In Action
-//Photos here
+
+
+Welcome Page:
+!["Welcome Page"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/welcome_page.png?raw=true)
+
+Customer view: Menu page
+!["Customer view: Menu page"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/client_main_page.png?raw=true)
+
+Customer view: Adding Items to the cart
+!["Customer view: Adding Items to the cart"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/client_adding_items.png?raw=true)
+
+
+Customer view: Waiting for SMS
+!["Customer view: Waiting for SMS"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/client_waiting_for_SMS.png?raw=true)
+
+
+Customer view: Receiving SMS
+!["Customer view: Receiving SMS"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/twilio_SMS_message.jpg?raw=true)
+
+
+Restaurant owner view: Register
+!["Restaurant owner view: Register"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/manager_register_page.png?raw=true)
+
+Restaurant owner view: Login
+!["Restaurant owner view: Login"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/manager_login_page.png?raw=true)
+
+Restaurant owner view: Adding menu items
+!["Restaurant owner view: Adding menu items"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/manager_add_menu_item_page.png?raw=true)
+
+Restaurant owner view: Managing orders
+!["Restaurant owner view: Managing orders"](https://github.com/gitmihalis/Option-7-Food-Pick-up-Ordering/blob/master/public/images/manager_orders_list_2.png?raw=true)
+
+
+
+

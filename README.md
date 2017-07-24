@@ -22,19 +22,32 @@ Desired users are restaurant owners and customers:
   - They are notified again when the food is ready.
 
 ## Getting Started
-Install all dependencies (using the 'npm install' command).
+Install all dependencies (using the `npm install` command).
+
+Setup the database:
+  - Run `knex migrate:latest` in your terminal.
+  - Optional: Set up dummy-data by running `knex seed:run` in your terminal.
+
+To use the voice/sms features:
+1. Install the google chrome extension, Forward : https://chrome.google.com/webstore/detail/forward-link-to-localhost/ghnicdmecgkdbledgnmbbnddfnjjgegp?hl=en
+2. Create a tunnel to your localhost and open it.
+3. Go to Twilio and sign up for a new account.
+4. Get a Twilio phone number.
+5. Create a new Twiml App in the console, and set the request URL to your tunneled address.
+6. Create a `.env` file and set the variables with your Twiml info.
+  TWILIO_ACCOUNT_SID=XXXXXXXXX
+  TWILIO_AUTH_TOKEN=XXXXXXXX
+  TWILIO_NUMBER=+1XXXXXXXXXX
+  TEST_NUMBER=+1XXXXXXXXXX
+
 
 Run the development web server using the 'npm start' command.
 
-As a restaurant owner:
+**As a restaurant owner:**
 Visit the page: http://localhost:3000/ in your browser.
 
-Ad a user:
-(This allows the connection to Twilio to allow phonecalls and SMS text)
-1. Install the google chrome extension, Forward : https://chrome.google.com/webstore/detail/forward-link-to-localhost/ghnicdmecgkdbledgnmbbnddfnjjgegp?hl=en
-2. Visit the page: http://localhost:3000/ in your browser.
-3. Call the chrome extension, Forward.
-4. Create a tunnel.
+**As a user:**
+Visit the page: http://YOUR_APP_NAME.fw.wf in your browser.
 
 
 ### Dependencies

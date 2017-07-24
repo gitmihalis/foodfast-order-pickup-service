@@ -18,7 +18,7 @@ header {
 a {
   color: #00a085; }
 
-h1 {
+h1.manage {
   font-family: Helvetica;
   color: #00a085;
   text-transform: uppercase;
@@ -70,5 +70,55 @@ h1 {
     font-size: 0.9em;
     padding: 0 0 0 20px;
     color: #585858; }
+
+#check {
+  background-color: transparent;
+  color: #ff7109;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #ff7109;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  text-align: center;
+  float: right;
+  margin: 0 8% 0 0; }
+
+#check:hover {
+  background-color: #00a085;
+  color: white;
+  border: 2px solid #00a085; }
+
+#logout {
+  background-color: transparent;
+  color: #00a085;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #00a085;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px 20px 0 20px; }
+
+#logout:hover {
+  background-color: #00a085;
+  color: white;
+  border: 2px solid #00a085; }
+
+#addMenu {
+  background-color: transparent;
+  color: #ff7109;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid #ff7109;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px 20px 0 20px; }
+
+#addMenu:hover {
+  background-color: #00a085;
+  color: white;
+  border: 2px solid #00a085; }
 
 /*# sourceMappingURL=order.css.map */

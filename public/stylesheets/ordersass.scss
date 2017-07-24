@@ -26,7 +26,7 @@ header{
 a {
   color: $brandGreen;
 }
-h1 {
+h1.manage {
   font-family: $font-title;
   color: $brandGreen;
   text-transform: uppercase;
@@ -86,5 +86,58 @@ h1 {
     padding: 0 0 0 20px;
     color: $darkGrey;
   }
+}
+
+#check{
+  background-color: transparent;
+  color: $brandOrange;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brandOrange;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  text-align: center;
+  float: right;
+  margin: 0 8% 0 0;
+}
+#check:hover{
+  background-color: $brandGreen;
+  color: white;
+  border: 2px solid $brandGreen;
+}
+
+#logout{
+  background-color: transparent;
+  color: $brandGreen;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brandGreen;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px 20px 0 20px;
+}
+#logout:hover{
+  background-color: $brandGreen;
+  color: white;
+  border: 2px solid $brandGreen;
+}
+
+#addMenu{
+  background-color: transparent;
+  color: $brandOrange;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brandOrange;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px 20px 0 20px;
+}
+#addMenu:hover{
+  background-color: $brandGreen;
+  color: white;
+  border: 2px solid $brandGreen;
 }
 

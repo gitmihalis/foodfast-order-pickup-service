@@ -9,7 +9,7 @@
       integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
       crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="test.js"></script>
+    <script type="text/javascript" src="retrieve.js"></script>
 
   </head>
   <body>
@@ -74,13 +74,13 @@
             }).done(function () {
               console.log('done');
           });
-          $(this).trigger("reset");
-          $(this).find(".item").remove();
-          $("#totalCalc").text("$ 0.00");
-          $(this).addClass("hide");
-          $("#empty").text("Thank you for your order! You will recieve an SMS when it has been accepted!");
-          $('.addButtonActive').removeClass("addButtonActive").addClass("addButton");
-          $('.menuPhoto').removeClass("active");
+        $(this).trigger("reset");
+        $(this).find(".item").remove();
+        $("#totalCalc").text("$ 0.00");
+        $(this).addClass("hide");
+        $("#empty").text("Thank you for your order! You will recieve an SMS when it has been accepted!");
+        $('.addButtonActive').removeClass("addButtonActive").addClass("addButton");
+        $('.menuPhoto').removeClass("active");
       });
       // ------------------- ADD ITEM TO CART ---------------------
 

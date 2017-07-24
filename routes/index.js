@@ -11,11 +11,6 @@ const OrderItems = require('../lib/order_items')(knex);
 const fs = require("fs");
 const request = require("request");
 
-//const knex = require('knex') (require('../database/knexfile').development);
-
-//const Client = require('./client')(knex);
-
-
 //-------------PAGES----------------------
 
 
@@ -24,11 +19,13 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Foodfast' });
 });
 
+/* GET welcome page. */
 router.get('/welcome', function(req, res) {
   res.render('welcome', {title: 'welcome'});
 })
 
-router.get('/testtwo', function(req, res, next){
+
+router.get('/load', function(req, res, next){
   Table.find_all('items')
   .then((table) => {
     res.json(table);
@@ -38,7 +35,7 @@ router.get('/testtwo', function(req, res, next){
   });
 });
 
-router.get('/testthree', function(req, res, next){
+router.get('/loadOrders', function(req, res, next){
   Order.find_by_status('pending')
   .then((table) => {
     res.json(table);
@@ -48,7 +45,7 @@ router.get('/testthree', function(req, res, next){
   });
 });
 
-router.get('/testfour', function(req, res, next){
+router.get('/loadItems', function(req, res, next){
   OrderItems.find_by_order_id(parseInt(req.query.id))
   .then((table) => {
     res.json(table);
@@ -58,24 +55,7 @@ router.get('/testfour', function(req, res, next){
   });
 });
 
-router.post('/test', function(req, res){
-  if (!req.body['quantities[]'][1]){
-    let name = req.body['names[]'];
-    let quantity = parseInt(req.body['quantities[]']);
-    console.log(name, quantity);
-  } else {
-    for (let value in req.body['quantities[]']){
-      let name = req.body['names[]'][value];
-      let quantity = parseInt(req.body['quantities[]'][value]);
-      console.log(name, quantity);
-    }
-  }
-  let payMethod = req.body.payMethod;
-  let customer = req.body.customerName;
-  let phone = req.body.customerPhone;
-  console.log(payMethod, customer, phone);
-});
-
+/* POST add menu item. */
 router.post('/add', function(req, res){
   res.status(200);
   let name = req.body.name;
@@ -94,14 +74,8 @@ router.post('/add', function(req, res){
   res.redirect("/");
 });
 
-
-router.post('/complete', function(req, res){
-  let status = req.body.status;
-  console.log(status);
-});
-
+/* GET manager page. */
 router.get("/users/manager", (req, res) => {
-  //let templateVars = { user: users[req.session.user_id] };
   if (req.session.user_id) {
     res.status(200);
     res.render("manager")
@@ -111,8 +85,8 @@ router.get("/users/manager", (req, res) => {
   return;
 });
 
+/* GET add to menu page. */
 router.get("/users/add", (req, res) => {
-  //let templateVars = { user: users[req.session.user_id] };
   res.status(200);
   res.render("add");
 });

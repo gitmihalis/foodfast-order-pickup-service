@@ -26,7 +26,7 @@ function renderMenu(items) {
 //Load the menu items from database
 function load() {
   $.ajax({
-      url: '/testtwo',
+      url: '/load',
       type: 'GET'
   }).then(function (jsonContent) {
       renderMenu(jsonContent);
@@ -36,7 +36,7 @@ function load() {
 //Load the orders from database
 function loadOrders() {
   $.ajax({
-      url: '/testthree',
+      url: '/loadOrders',
       type: 'GET'
   }).then(function (jsonContent) {
       renderOrder(jsonContent);
@@ -53,7 +53,7 @@ function createOrder(data){
   let id = data.id;
 
   //Variables for the counter
-  let prepMilli = prep * 60 * 1000;
+  let prepMilli = Number(prep) * 60 * 1000;
   let countDownDate = new Date(date).getTime() + prepMilli;
   let now = new Date().getTime();
   let distance = countDownDate - now;
@@ -72,17 +72,20 @@ function createOrder(data){
     //Timer function
     let x = setInterval(function() { // Update the count down every 1 second
       let now = new Date().getTime();
+      let distance = countDownDate - now;
+
       // Time calculations for minutes and seconds
       let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
       //Pad the displayed number with zeros
       function pad(d) {
         return (d < 10) ? '0' + d.toString() : d.toString();
       }
-      // Display the result
+        // Display the result in the element with class="orderTime"
       let timer = minutes + ":" + pad(seconds) + "min";
       $(timerIdName).text(timer);
-      // If the countdown is finished, order is overdue
+      // If the count down is finished, order is overdue
       if (distance < 0) {
         clearInterval(x);
         $(timerIdName).text('OVERDUE');
@@ -94,7 +97,7 @@ function createOrder(data){
 //Load the items from the database
 function loadItems(id) {
   $.ajax({
-      url: '/testfour',
+      url: '/loadItems',
       type: 'GET',
       data: {'id': id}
   }).then(function (jsonContent) {

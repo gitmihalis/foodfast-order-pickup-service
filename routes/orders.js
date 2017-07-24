@@ -8,43 +8,31 @@ const Item = require('../lib/item')(knex);
 const OrderItem = require('../lib/order_items')(knex);
 
 // -------- ROUTES ------------
-router.get('/' ,(req, res) => {
-
-  res.status(200);
-  res.render("manager", {title: 'Orders list'});
-});
 
 /* POST Place a new order to be confirmed by the client */
 router.post('/', (req, res) => {
-	// * 
-	console.log('request body is : ', req.body);
 	let itemQuants = req.body['quantities[]'];
 	let itemNames = req.body['names[]'];
+	// Set the order id when the order is created &
+  // persist `orderID` through to `Order.create_order_items`
 	let orderID  = null;
-	console.log('itemnames is a ', typeof itemNames)
 	itemNames = ( typeof itemNames === 'string' ) ? [itemNames] : itemNames;
 	itemQuants = ( typeof itemQuants === 'string' ) ? [itemQuants] : itemQuants;
-		console.log('itemnames is a ', typeof itemNames)
-	// `create_order params are are follows[ name, cost, status, phone_number, estimated_time ] 
-	Order.create_order( req.body.customerName, req.body.cost, 'pending', req.body.customerPhone, null )
+	Order.create_order( req.body.customerName, req.body.cost, 'pending', req.body.customerPhone, null ) // Returns an id <integer>
 		.then( rows => {
 			orderID = rows[0];
-			// console.log('items: ', items)
 			itemNames.forEach(function( str, i, itemNames ) {
-				console.log('inside forEach, itemQuants is', itemQuants);
 				Item.find_by_name(str)
 					.then( item => {
-						OrderItem.create_orderitems(orderID, Number(item.id), Number(itemQuants[i]), Number(item.item_price) )
-							.then( () => {})
-							.catch( (err) => console.log('error creating orderitems', err))
+						OrderItem.create_orderitems( orderID, Number(item.id), Number(itemQuants[i]), Number(item.item_price) )
+							.catch( (err) => console.log('! error creating orderitems ! ', err))
 					})
-					.catch((err) => console.error(err));
+					.catch((err) => console.error('! could not find item ! ', err));
 			});
-			console.log('Order items saved');
 		})
 		.then( () => {
-
-		  console.log('[^ order # ' + orderID + ' created ]');
+		  console.log('[^ order (id:' + orderID + ') created ]');
+		  // Initiate the iteractive voice API
 			client.calls.create({
 		  	url: 'https://foodfast.fwd.wf/ivr/greeting/' + orderID ,
 		  	to: process.env.TEST_NUMBER,
@@ -56,31 +44,39 @@ router.post('/', (req, res) => {
 		})
 });
 
+// 
 router.put('/:id', (req, res) => {
-	// if user is user 
+	// Alert customer to pickup item.
+	// TODO:: Route to order.phoneNumber
 		const estimate_time = req.query.time;
 		client.messages.create({
-	  body: `Your order is ready for pickup!`,
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
+	  	body: `Your order is ready for pickup!`,
+	  	to: process.env.TEST_NUMBER,
+	  	from: process.env.TWILIO_NUMBER,
 	}).then((msg) => {
 		res.status('200').send(msg.sid);
-	}).catch((err) => console.log(err));
-
+	}).catch((err) => console.log('Error, sending pickup notice', err));
 	Order.update_order(req.params.id, ['status'], ['completed'])
 		.then( (result) => res.status(200).json({"result": result}))
 		.catch( (err) => res.status(500).json({"error": "edit resource failed"}));
 });
 
 router.get('/sms', (req, res) => {
+	// App should use query params, like this to 
+	// persist order information...
 	const estimate_time = req.query.time;
 		client.messages.create({
-	  body: `Food Bagz is perparing your order. We'll alert you when it's ready! ...(${req.query.time} minutes)`,
-	  to: process.env.TEST_NUMBER,
-	  from: process.env.TWILIO_NUMBER,
+	  	body: `Food Bagz is perparing your order. We'll alert you when it's ready! ...(${req.query.time} minutes)`,
+	  	to: process.env.TEST_NUMBER,
+	  	from: process.env.TWILIO_NUMBER,
 	}).then((msg) => {
 		res.status('200').send(msg.sid);
-	}).catch((err) => console.log(err));
+	}).catch((err) => {
+		res.status(500).send({
+			error: err,
+			message: 'Estimated time SMS failed to send'
+		})
+	});
 })
 
 

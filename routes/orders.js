@@ -58,6 +58,15 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
 	// if user is user 
+		const estimate_time = req.query.time;
+		client.messages.create({
+	  body: `Your order is ready for pickup!`,
+	  to: process.env.TEST_NUMBER,
+	  from: process.env.TWILIO_NUMBER,
+	}).then((msg) => {
+		res.status('200').send(msg.sid);
+	}).catch((err) => console.log(err));
+
 	Order.update_order(req.params.id, ['status'], ['completed'])
 		.then( (result) => res.status(200).json({"result": result}))
 		.catch( (err) => res.status(500).json({"error": "edit resource failed"}));
